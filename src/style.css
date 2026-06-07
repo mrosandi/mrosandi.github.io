@@ -112,7 +112,6 @@ header {
 
 .container{
   display: none;
-  mix-blend-mode: lighten;
 }
 .logo{
   line-height: 20px;
@@ -709,6 +708,20 @@ nav .nav-backdrop{
 .loading-text{
   font-size: 30px;
 }
+/* .overlay-menu{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  display: none;
+}
+.overlay-menu.active{
+  display: block;
+} */
 }
 
 @media (max-width: 400px){
@@ -725,8 +738,8 @@ nav .nav-backdrop{
 
 /*------------ ANIMATION ------------*/
 .fade-in-bottom {
-	-webkit-animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.6s both;
-	        animation: fade-in-bottom 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.6s both;
+	-webkit-animation: fade-in-bottom 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
+	        animation: fade-in-bottom 1.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) 2s both;
 }
 
 @-webkit-keyframes fade-in-bottom {
