@@ -225,6 +225,8 @@ section {
   gap: 30px;
   flex-direction: column;
   padding-bottom: calc(50vh / 2 - 100px);
+  position: relative;
+  z-index: 2;
 }
 
 section h2{
