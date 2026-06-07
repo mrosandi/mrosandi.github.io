@@ -578,13 +578,21 @@ document.querySelectorAll("nav ul li a").forEach(n => n.addEventListener("click"
 /* ═══════════════════════════════════════════════════════════
    6.  ANIMATED TEXT  (animated-text)
    ═══════════════════════════════════════════════════════════ */
- var typing=new Typed(".text", {
-       strings: ["", "Design Engineer", "Product Thinking", "Frontend Architect", "Generative Design", "AI Augmentation"],
-       typeSpeed: 80,
-       backSpeed: 30,
-       loop: true,
-       showCursor: false,
-   });
+ var typing = new Typed(".text", {
+   strings: [
+     "",
+     "Design Engineer",
+     "Product Thinking",
+     "Frontend Architect",
+     "Generative Design",
+     "AI Augmentation",
+   ],
+   contentType: "text",
+   typeSpeed: 80,
+   backSpeed: 30,
+   loop: true,
+   showCursor: false,
+ });
 
 /* ═══════════════════════════════════════════════════════════
    7.  FORM SUBMISSION  (formsubmit)

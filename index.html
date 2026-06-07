@@ -9,14 +9,6 @@
 </head>
 <body>
 
-<!-- Noise bg: noise-canvas (base) + fluid-canvas (overlay) -->
-  <div id="noise-bg">
-    <canvas id="noise-canvas"></canvas>
-    <canvas id="fluid-canvas"></canvas>
-  </div>
-<!-- Cursor dot only -->
-  <div id="c-dot"></div>
-
 <!-- Loading -->
  <div class="loading">
   <div class="loading-inner">
@@ -35,6 +27,15 @@
   
 <!-- UI -->
 <main class="container">
+  <!-- Noise bg: noise-canvas (base) + fluid-canvas (overlay) -->
+  <div id="noise-bg">
+    <canvas id="noise-canvas"></canvas>
+    <canvas id="fluid-canvas"></canvas>
+  </div>
+
+  <!-- Cursor dot only -->
+  <div id="c-dot"></div>
+  
   <!-- Liquid reveal -->
   <div id="gl-wrap" class="fade-in-bottom">
     <canvas id="gl"></canvas>
