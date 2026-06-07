@@ -706,8 +706,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Beri jeda visual singkat (400ms) agar user sempat melihat angka 100%
         setTimeout(() => {
-            loadingArea.style.display = 'none';      // Sembunyikan seluruh area loading
-            mainContainer.style.display = 'flex';   // Munculkan container utama
-        }, 600);
+          loadingArea.style.display = "none"; // Sembunyikan seluruh area loading
+          mainContainer.style.display = "flex"; // Munculkan container utama
+        }, 1000);
     });
 });
