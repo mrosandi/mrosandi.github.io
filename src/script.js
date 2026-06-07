@@ -1140,6 +1140,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // INSTAN: Langsung tukar tampilan tanpa delay setTimeout
     loadingArea.style.display = "none";
-    mainContainer.style.display = "block";
+    mainContainer.style.display = "flex";
   });
 });
