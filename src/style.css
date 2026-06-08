@@ -83,12 +83,12 @@ html, body {
   font-size: 12px;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.5);
   pointer-events: none;
   white-space: nowrap;
   animation: breathe 3.5s ease-in-out infinite;
 }
-@keyframes breathe { 0%,100%{opacity:.05;} 50%{opacity:.4;} }
+@keyframes breathe { 0%,100%{opacity:.1;} 50%{opacity:.5;} }
 
 
 main{
@@ -278,6 +278,8 @@ section p span{
   justify-content: center;
   gap: 10px;
   border: 1px solid rgba(255, 255, 255, 1);
+  background: radial-gradient(214.46% 115.1% at 51.74% 16.04%, rgba(55, 70, 74, 0.60) 0%, rgba(116, 128, 150, 0.10) 58.65%, rgba(214, 218, 227, 0.05) 100%);
+  backdrop-filter: blur(4px);
   font-size: 18px;
   
 }
@@ -307,7 +309,7 @@ footer small {
   padding: 10px 0;
   display: block;
   margin-bottom: 20px;
-  color: rgba(255, 255, 255,0.2);
+  color: rgba(255, 255, 255,0.5);
   font-size: 12px;
   letter-spacing: .22em;
 }
