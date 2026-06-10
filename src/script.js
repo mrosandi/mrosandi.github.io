@@ -1034,7 +1034,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const myMessageDiv = document.getElementById("myMessage");
   const submitBtn = document.getElementById("submit-btn");
 
-  // 1. PROSES SUBMIT FORM (AJAX)
+    // 1. PROSES SUBMIT FORM (AJAX VIA WEB3FORMS - STABIL DAN RELIABLE)
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -1047,39 +1047,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const formData = new FormData(contactForm);
       const object = {};
-      formData.forEach((value, key) => (object[key] = value));
+      formData.forEach((value, key) => {
+        object[key] = value;
+      });
       const json = JSON.stringify(object);
 
-      fetch(contactForm.action, {
-        method: contactForm.method,
+      // Mengarah langsung ke API endpoint Web3Forms yang stabil
+      fetch("https://web3forms.com", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: json,
       })
-        .then((response) => {
-          if (!response.ok) throw new Error("Network error");
-          return response.json();
-        })
-        .then((data) => {
-          if (data.success === "true" || data.success === true) {
-            // Kosongkan isi input form
-            contactForm.reset();
-            // Sembunyikan form, munculkan pesan sukses
-            if (myFormDiv) myFormDiv.style.display = "none";
-            if (myMessageDiv) myMessageDiv.style.display = "block";
+        .then(async (response) => {
+          let res = await response.json();
+          if (response.status === 200) {
+            // Pengiriman sukses nyata, eksekusi visual dialog
+            showSuccessState();
           } else {
-            alert("Error: " + (data.message || "Please try again."));
+            console.log(res);
+            alert("Error: " + (res.message || "Something went wrong."));
+            resetButton();
           }
-          resetButton();
         })
         .catch((error) => {
-          console.error("Error:", error);
-          alert("Failed to send message.");
+          console.error("Detail Error:", error);
+          alert("Gagal terhubung ke server pengirim email.");
           resetButton();
         });
     });
+  }
+
+  // Fungsi pembantu manajemen state visual tetap dipertahankan
+  function showSuccessState() {
+    if (contactForm) contactForm.reset();
+    if (myFormDiv) myFormDiv.style.display = "none";
+    if (myMessageDiv) {
+      myMessageDiv.style.display = "block";
+      myMessageDiv.scrollIntoView({ behavior: "smooth" });
+    }
+    resetButton();
   }
 
   function resetButton() {
@@ -1088,6 +1097,7 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = false;
     }
   }
+
 
   // 2. RESET MODAL KETIKA DIKLIKK / DIBUKA KEMBALI
   // Fungsi untuk mengembalikan tampilan ke kondisi awal (myForm muncul)
