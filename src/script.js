@@ -1027,14 +1027,13 @@ var typing = new Typed(".text", {
    7.  FORM SUBMISSION  (web3forms)
    ═══════════════════════════════════════════════════════════ */
 
-// Menunggu seluruh HTML selesai dimuat oleh browser sebelum menjalankan script
 document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.getElementById("contact-form");
   const myFormDiv = document.getElementById("myForm");
   const myMessageDiv = document.getElementById("myMessage");
   const submitBtn = document.getElementById("submit-btn");
 
-  // 1. PROSES SUBMIT FORM (AJAX VIA WEB3FORMS - STABIL DAN RELIABLE)
+  // 1. PROSES SUBMIT FORM (STANDAR RESMI WEB3FORMS JSON)
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -1045,42 +1044,50 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.disabled = true;
       }
 
+      // Mengubah FormData menjadi Objek JSON Bersih (Wajib bagi Web3Forms)
       const formData = new FormData(contactForm);
       const object = {};
       formData.forEach((value, key) => {
         object[key] = value;
       });
-      const json = JSON.stringify(object);
+      const jsonData = JSON.stringify(object);
 
-      // Mengarah langsung ke API endpoint Web3Forms yang stabil
-      fetch("https://web3forms.com", {
+      // Mengirim data ke API Web3Forms dengan Header JSON murni
+      fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: json,
+        body: jsonData,
       })
         .then(async (response) => {
-          let res = await response.json();
-          if (response.status === 200) {
-            // Pengiriman sukses nyata, eksekusi visual dialog
+          const res = await response.json();
+
+          // Membaca respon sukses dari Web3Forms (HTTP 200 atau success: true)
+          if (response.status === 200 || res.success === true) {
+            // EMAIL SUKSES MASUK -> AMAN UNTUK MENGUBAH TAMPILAN DIALOG
             showSuccessState();
           } else {
-            console.log(res);
-            alert("Error: " + (res.message || "Something went wrong."));
+            // Jika key salah atau parameter tidak lengkap
+            alert(
+              "Gagal: " + (res.message || "Periksa kembali Access Key Anda."),
+            );
             resetButton();
           }
         })
         .catch((error) => {
-          console.error("Detail Error:", error);
-          alert("Gagal terhubung ke server pengirim email.");
+          // Jika terjadi error jaringan/CORS asli, tombol akan di-reset dan form TIDAK AKAN disembunyikan
+          console.error("Detail Kendala Jaringan:", error);
+          alert(
+            "Gagal mengirim! Koneksi Anda diblokir oleh browser atau ekstensi AdBlocker.",
+          );
           resetButton();
         });
     });
   }
 
-  // Fungsi pembantu manajemen state visual tetap dipertahankan
+  // Fungsi pembantu manajemen state visual (Hanya dipanggil jika sukses)
   function showSuccessState() {
     if (contactForm) contactForm.reset();
     if (myFormDiv) myFormDiv.style.display = "none";
@@ -1098,29 +1105,37 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // 2. RESET MODAL KETIKA DIKLIKK / DIBUKA KEMBALI
-  // Fungsi untuk mengembalikan tampilan ke kondisi awal (myForm muncul)
+  // 2. RESET MODAL KETIKA DIKLIK / DIBUKA KEMBALI
   function resetModalState() {
     if (myFormDiv) myFormDiv.style.display = "block";
     if (myMessageDiv) myMessageDiv.style.display = "none";
   }
 
-  // Deteksi jika user menutup modal atau membuka modal lewat perubahan URL Hash (#dialogForm)
   window.addEventListener("hashchange", function () {
-    // Jika URL saat ini tidak mengandung '#dialogForm' (artinya modal ditutup/berpindah)
     if (window.location.hash !== "#dialogForm") {
       resetModalState();
     }
   });
 
-  // Antisipasi tambahan: Reset langsung saat tombol close ber-class ".close" diklik
   const closeLink = document.querySelector("#dialogForm .close");
   if (closeLink) {
     closeLink.addEventListener("click", function () {
       resetModalState();
     });
   }
+
+  // 3. TUTUP DIALOG SAAT DIKLIK PADA CLASS OVERLAY (DI LUAR DIALOG BODY)
+  const overlayDialog = document.querySelector(".overlay");
+  if (overlayDialog) {
+    overlayDialog.addEventListener("click", function (e) {
+      if (e.target === overlayDialog) {
+        window.location.hash = "";
+        resetModalState();
+      }
+    });
+  }
 });
+
 
 /* ═══════════════════════════════════════════════════════════
    8.  LOADING PAGE
