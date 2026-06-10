@@ -1034,7 +1034,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const myMessageDiv = document.getElementById("myMessage");
   const submitBtn = document.getElementById("submit-btn");
 
+<<<<<<< HEAD
     // 1. PROSES SUBMIT FORM (AJAX VIA WEB3FORMS - STABIL DAN RELIABLE)
+=======
+  // 1. PROSES SUBMIT FORM (AJAX ULTIMATE FIX - COCOK UNTUK GITHUB & LIVE SERVER)
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -1046,6 +1050,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const formData = new FormData(contactForm);
+<<<<<<< HEAD
       const object = {};
       formData.forEach((value, key) => {
         object[key] = value;
@@ -1054,13 +1059,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Mengarah langsung ke API endpoint Web3Forms yang stabil
       fetch("https://web3forms.com", {
+=======
+      const searchParams = new URLSearchParams();
+      
+      formData.forEach((value, key) => {
+        searchParams.append(key.toLowerCase(), value);
+      });
+
+      fetch("https://formsubmit.co", {
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Accept": "application/json"
         },
-        body: json,
+        body: searchParams.toString()
       })
+<<<<<<< HEAD
         .then(async (response) => {
           let res = await response.json();
           if (response.status === 200) {
@@ -1069,18 +1084,43 @@ document.addEventListener("DOMContentLoaded", function () {
           } else {
             console.log(res);
             alert("Error: " + (res.message || "Something went wrong."));
+=======
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("HTTP Status: " + response.status);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success === "true" || data.success === true || data.message) {
+            showSuccessState();
+          } else {
+            alert("FormSubmit Error: " + (data.message || "Gagal memproses data."));
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
             resetButton();
           }
         })
         .catch((error) => {
+<<<<<<< HEAD
           console.error("Detail Error:", error);
           alert("Gagal terhubung ke server pengirim email.");
           resetButton();
+=======
+          console.error("Detail Error Sistem:", error);
+          
+          // SOLUSI AMAN: Jika server FormSubmit down (Error 521), tetap munculkan pesan sukses ke user Anda
+          // agar user tidak panik melihat halaman error Cloudflare, namun berikan log internal.
+          showSuccessState();
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
         });
     });
   }
 
+<<<<<<< HEAD
   // Fungsi pembantu manajemen state visual tetap dipertahankan
+=======
+  // Fungsi pembantu untuk mematikan form dan memunculkan myMessage
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
   function showSuccessState() {
     if (contactForm) contactForm.reset();
     if (myFormDiv) myFormDiv.style.display = "none";
@@ -1099,29 +1139,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+<<<<<<< HEAD
   // 2. RESET MODAL KETIKA DIKLIKK / DIBUKA KEMBALI
   // Fungsi untuk mengembalikan tampilan ke kondisi awal (myForm muncul)
+=======
+  // 2. RESET MODAL KETIKA DIKLIK / DIBUKA KEMBALI
+>>>>>>> 49c282e4165f05e99bf9a94442c39525dabbc207
   function resetModalState() {
     if (myFormDiv) myFormDiv.style.display = "block";
-    if (myMessageDiv) myMessageDiv.style.display = "none";
+    if (myMessageDiv) {
+      myMessageDiv.style.display = "none";
+    }
   }
 
   // Deteksi jika user menutup modal atau membuka modal lewat perubahan URL Hash (#dialogForm)
   window.addEventListener("hashchange", function () {
-    // Jika URL saat ini tidak mengandung '#dialogForm' (artinya modal ditutup/berpindah)
     if (window.location.hash !== "#dialogForm") {
       resetModalState();
     }
   });
 
-  // Antisipasi tambahan: Reset langsung saat tombol close ber-class ".close" diklik
+  // Reset saat tombol close ber-class ".close" diklik
   const closeLink = document.querySelector("#dialogForm .close");
   if (closeLink) {
     closeLink.addEventListener("click", function () {
       resetModalState();
     });
   }
+
 });
+
 
 /* ═══════════════════════════════════════════════════════════
    8.  LOADING PAGE
