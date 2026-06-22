@@ -1112,8 +1112,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("hashchange", function () {
+    // 1. Kode bawaan Anda untuk reset state dialogForm
     if (window.location.hash !== "#dialogForm") {
       resetModalState();
+    }
+
+    // 2. Logika baru menggunakan class 'overlay'
+    const cDot = document.getElementById('c-dot');
+
+    // Mengambil ID dari hash URL (misal dari '#dialog' menjadi 'dialog')
+    const currentHashId = window.location.hash.substring(1);
+    // Mencari elemen berdasarkan ID tersebut
+    const activeDialog = document.getElementById(currentHashId);
+
+    // Jika elemen ditemukan DAN elemen tersebut memiliki class 'overlay'
+    if (activeDialog && activeDialog.classList.contains('overlay')) {
+      // Sembunyikan elemen jika ada salah satu dialog overlay yang aktif
+      if (cDot) cDot.style.setProperty('display', 'none', 'important');
+    } else {
+      // Munculkan kembali jika hash kosong atau bukan bagian dari class overlay
+      if (cDot) cDot.style.display = '';
     }
   });
 
@@ -1125,15 +1143,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 3. TUTUP DIALOG SAAT DIKLIK PADA CLASS OVERLAY (DI LUAR DIALOG BODY)
-  const overlayDialog = document.querySelector(".overlay");
-  if (overlayDialog) {
+  document.querySelectorAll(".overlay").forEach((overlayDialog) => {
     overlayDialog.addEventListener("click", function (e) {
       if (e.target === overlayDialog) {
         window.location.hash = "";
         resetModalState();
       }
     });
-  }
+  });
 });
 
 
