@@ -1184,3 +1184,122 @@ document.addEventListener("DOMContentLoaded", () => {
     mainContainer.style.display = "flex";
   });
 });
+
+/* =========================
+   Reveal Animation
+========================= */
+
+const reveals = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((entry,index)=>{
+        if(entry.isIntersecting){
+            entry.target.style.transitionDelay =
+                (index % 4) * 120 + 'ms';
+            entry.target.classList.add('active');
+        }
+    });
+},{
+    threshold:0.15
+});
+
+reveals.forEach(el => observer.observe(el));
+
+/* =========================
+   Chart Animation On Scroll
+========================= */
+
+let chartInitialized = false;
+Chart.defaults.font.family = "'JetBrains Mono', monospace"; 
+
+const chartObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting && !chartInitialized){
+
+            chartInitialized = true;
+
+            new Chart(
+                document.getElementById('successChart'),
+                {
+                    type:'bar',
+                    data:{
+                        labels:[
+                            'ONBOARDING',
+                            'POST NEWS',
+                            'EVENTS',
+                            'MEMBERSHIP',
+                            'MARKETPLACE'
+                        ],
+                        datasets:[{
+                            data:[95,85,80,75,85],
+                            backgroundColor:'#f0541b',
+                            borderRadius: {
+                              topLeft: 8,
+                              topRight: 8,
+                              bottomLeft: 0,
+                              bottomRight: 0
+                            },
+                            barThickness: 40, 
+                            borderSkipped:false
+                        }]
+                    },
+                    options:{
+                        responsive:true,
+                        maintainAspectRatio:false,
+                        animation:{
+                            duration:1200,
+                            easing:'easeOutQuart'
+                        },
+                        plugins:{
+                            legend:{
+                                display:false
+                            },
+                            tooltip:{
+                                callbacks:{
+                                    label:(ctx)=>
+                                        ctx.raw + '%'
+                                }
+                            }
+                        },
+                        scales:{
+                            y:{
+                                beginAtZero:true,
+                                max:100,
+                                grid:{
+                                    color:'#ececec'
+                                },
+                                ticks:{
+                                   stepSize: 20,
+                                   padding: 15,
+                                   color:'#848d9f'
+                                },
+                                border: {
+                                  display:false,
+                                  dash: [4, 4] // [dash length, gap length] for y-axis
+                                }
+                            },
+                            x:{
+                                grid:{
+                                    display:false
+                                },
+                                border:{
+                                  display:false
+                                },
+                                ticks:{
+                                   color:'#848d9f'
+                                },
+                            }
+                        }
+                    }
+                }
+            );
+
+        }
+    });
+},{
+    threshold:0.3
+});
+
+chartObserver.observe(
+    document.querySelector('.testing-chart-card')
+);
