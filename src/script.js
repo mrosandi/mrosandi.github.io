@@ -1303,3 +1303,257 @@ const chartObserver = new IntersectionObserver((entries)=>{
 chartObserver.observe(
     document.querySelector('.testing-chart-card')
 );
+
+
+/* ═══════════════════════════════════════════════════════
+   SPHERICAL PLEXUS — Three.js
+   ═══════════════════════════════════════════════════════ */
+(function() {
+ 
+  /* ── Communities ── */
+  const communities = [
+    { name: "Growth Collective",   initials: "GC", color: "#f0541b" },
+    { name: "Women in Business",   initials: "WB", color: "#8E6CF5" },
+    { name: "Design Collective",   initials: "DC", color: "#25B6D2" },
+    { name: "Tech Leaders Forum",  initials: "TL", color: "#4A6FD6" },
+    { name: "Future Creators",     initials: "FC", color: "#8E6CF5" },
+    { name: "Entrepreneur Circle", initials: "EC", color: "#f0541b" },
+    { name: "Health Network",      initials: "HN", color: "#25B6D2" },
+    { name: "Startup Alliance",    initials: "SA", color: "#4A6FD6" },
+    { name: "Innovation Hub",      initials: "IH", color: "#6D28D9" },
+    { name: "Creative Network",    initials: "CN", color: "#25B6D2" },
+  ];
+ 
+  /* ── Setup ── */
+  const canvas   = document.getElementById("plexus-canvas");
+  const wrap     = canvas.parentElement;
+  const nodesEl  = document.getElementById("community-nodes");
+ 
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+ 
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 1000);
+  camera.position.z = 3.2;
+ 
+  function resize() {
+    const w = wrap.offsetWidth;
+    const h = wrap.offsetHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener("resize", resize);
+ 
+  /* ── Sphere params ── */
+  const SPHERE_R   = 1.0;
+  const NODE_COUNT = 180;
+  const LINK_DIST  = 0.55;
+ 
+  /* Fibonacci sphere distribution for nodes */
+  function fibSphere(n, r) {
+    const pts = [];
+    const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < n; i++) {
+      const y     = 1 - (i / (n - 1)) * 2;
+      const radii = Math.sqrt(1 - y * y);
+      const theta = goldenAngle * i;
+      pts.push(new THREE.Vector3(Math.cos(theta) * radii * r, y * r, Math.sin(theta) * radii * r));
+    }
+    return pts;
+  }
+ 
+  const nodePositions = fibSphere(NODE_COUNT, SPHERE_R);
+ 
+  /* ── Node geometry (points) ── */
+  const nodeGeo = new THREE.BufferGeometry();
+  const nodePosArr = new Float32Array(NODE_COUNT * 3);
+  nodePositions.forEach((p, i) => {
+    nodePosArr[i * 3]     = p.x;
+    nodePosArr[i * 3 + 1] = p.y;
+    nodePosArr[i * 3 + 2] = p.z;
+  });
+  nodeGeo.setAttribute("position", new THREE.BufferAttribute(nodePosArr, 3));
+ 
+  /* Node colors — gradient from indigo to cyan */
+  const nodeColArr = new Float32Array(NODE_COUNT * 3);
+  for (let i = 0; i < NODE_COUNT; i++) {
+    const t  = i / NODE_COUNT;
+    const c1 = new THREE.Color(0xf0541b); // indigo
+    const c2 = new THREE.Color(0x25B6D2); // cyan
+    const c  = c1.lerp(c2, t);
+    nodeColArr[i * 3]     = c.r;
+    nodeColArr[i * 3 + 1] = c.g;
+    nodeColArr[i * 3 + 2] = c.b;
+  }
+  nodeGeo.setAttribute("color", new THREE.BufferAttribute(nodeColArr, 3));
+ 
+  const nodeMat = new THREE.PointsMaterial({
+    size: 0.022,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.85,
+    sizeAttenuation: true,
+  });
+  const nodePoints = new THREE.Points(nodeGeo, nodeMat);
+  scene.add(nodePoints);
+ 
+  /* ── Connection lines ── */
+  const linePositions = [];
+  const lineColors    = [];
+ 
+  for (let i = 0; i < NODE_COUNT; i++) {
+    for (let j = i + 1; j < NODE_COUNT; j++) {
+      const dist = nodePositions[i].distanceTo(nodePositions[j]);
+      if (dist < LINK_DIST) {
+        const alpha = 1 - dist / LINK_DIST;
+        const c1 = new THREE.Color(0xf0541b);
+        const c2 = new THREE.Color(0x25B6D2);
+        const cm = c1.lerp(c2, (i + j) / (NODE_COUNT * 2));
+ 
+        linePositions.push(
+          nodePositions[i].x, nodePositions[i].y, nodePositions[i].z,
+          nodePositions[j].x, nodePositions[j].y, nodePositions[j].z
+        );
+        lineColors.push(
+          cm.r, cm.g, cm.b,
+          cm.r, cm.g, cm.b
+        );
+      }
+    }
+  }
+ 
+  const lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute("position", new THREE.BufferAttribute(new Float32Array(linePositions), 3));
+  lineGeo.setAttribute("color",    new THREE.BufferAttribute(new Float32Array(lineColors),    3));
+ 
+  const lineMat = new THREE.LineBasicMaterial({
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.22,
+  });
+  const lineSegs = new THREE.LineSegments(lineGeo, lineMat);
+  scene.add(lineSegs);
+ 
+  /* ── Floating particles (outside sphere) ── */
+  const PARTICLE_COUNT = 60;
+  const partGeo = new THREE.BufferGeometry();
+  const partPos = new Float32Array(PARTICLE_COUNT * 3);
+  const partPhase = [];
+ 
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi   = Math.acos(2 * Math.random() - 1);
+    const r     = 1.15 + Math.random() * 0.7;
+    partPos[i*3]   = r * Math.sin(phi) * Math.cos(theta);
+    partPos[i*3+1] = r * Math.cos(phi);
+    partPos[i*3+2] = r * Math.sin(phi) * Math.sin(theta);
+    partPhase.push(Math.random() * Math.PI * 2);
+  }
+  partGeo.setAttribute("position", new THREE.BufferAttribute(partPos, 3));
+ 
+  const partMat = new THREE.PointsMaterial({
+    size: 0.012,
+    color: new THREE.Color(0x8E6CF5),
+    transparent: true,
+    opacity: 0.55,
+  });
+  const particles = new THREE.Points(partGeo, partMat);
+  scene.add(particles);
+ 
+  /* ── Group everything ── */
+  const sphereGroup = new THREE.Group();
+  sphereGroup.add(nodePoints, lineSegs, particles);
+  scene.add(sphereGroup);
+ 
+  /* ── Community node DOM badges ── */
+  const colorClasses = ["color-a","color-b","color-c","color-d","color-e"];
+  const domNodes = [];
+ 
+  // Pick evenly spaced sphere points for community badges
+  const commIndices = communities.map((_, i) => Math.floor((i / communities.length) * NODE_COUNT));
+ 
+  communities.forEach((comm, i) => {
+    const el = document.createElement("div");
+    el.className = "c-node";
+    el.innerHTML = `
+      <div class="c-node-badge ${colorClasses[i % colorClasses.length]}">${comm.initials}</div>
+      <div class="c-node-label">${comm.name}</div>
+    `;
+    nodesEl.appendChild(el);
+    domNodes.push({ el, idx: commIndices[i] });
+  });
+ 
+  /* ── Mouse parallax ── */
+  let targetRotX = 0, targetRotY = 0;
+  let currentRotX = 0, currentRotY = 0;
+ 
+  document.addEventListener("mousemove", e => {
+    const cx = window.innerWidth  / 2;
+    const cy = window.innerHeight / 2;
+    targetRotY = ((e.clientX - cx) / cx) * 0.18;
+    targetRotX = ((e.clientY - cy) / cy) * 0.10;
+  });
+ 
+  /* ── Project 3D → 2D for DOM nodes ── */
+  const projVec = new THREE.Vector3();
+ 
+  function projectToScreen(pos3d) {
+    projVec.copy(pos3d);
+    projVec.applyMatrix4(sphereGroup.matrixWorld);
+    projVec.project(camera);
+    const w = wrap.offsetWidth, h = wrap.offsetHeight;
+    return {
+      x: (projVec.x *  0.5 + 0.5) * w,
+      y: (projVec.y * -0.5 + 0.5) * h,
+      z: projVec.z
+    };
+  }
+ 
+  /* ── Animate ── */
+  const clock = new THREE.Clock();
+ 
+  (function animate() {
+    requestAnimationFrame(animate);
+    const t   = clock.getElapsedTime();
+    const dt  = clock.getDelta ? 0.016 : 0.016;
+ 
+    /* Smooth mouse */
+    currentRotX += (targetRotX - currentRotX) * 0.06;
+    currentRotY += (targetRotY - currentRotY) * 0.06;
+ 
+    /* Auto rotate + mouse tilt */
+    sphereGroup.rotation.y = t * 0.12 + currentRotY;
+    sphereGroup.rotation.x = currentRotX * 0.6;
+ 
+    /* Particle float */
+    const pa = partGeo.attributes.position;
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      const phase = partPhase[i];
+      pa.array[i*3+1] += Math.sin(t * 0.8 + phase) * 0.0004;
+    }
+    pa.needsUpdate = true;
+ 
+    /* Node pulse opacity */
+    nodeMat.opacity = 0.7 + Math.sin(t * 1.4) * 0.15;
+    lineMat.opacity = 0.18 + Math.sin(t * 0.9 + 1) * 0.06;
+ 
+    renderer.render(scene, camera);
+ 
+    /* Update DOM community badges */
+    domNodes.forEach(({ el, idx }) => {
+      const pos3d = nodePositions[idx];
+      const { x, y, z } = projectToScreen(pos3d);
+ 
+      /* hide if behind sphere */
+      if (z > 1) { el.style.opacity = "0"; return; }
+ 
+      el.style.opacity = "1";
+      el.style.left = x + "px";
+      el.style.top  = y + "px";
+    });
+  })();
+ 
+})();
