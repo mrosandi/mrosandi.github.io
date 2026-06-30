@@ -1214,6 +1214,10 @@ footer small {
     overflow-y: auto;
     overflow-x: hidden;
     height:95vh;
+    pointer-events: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
   }
 }
 
