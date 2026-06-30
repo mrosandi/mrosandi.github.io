@@ -1200,13 +1200,20 @@ footer small {
 @media (max-width: 768px){
   .overlay-scroll{
     padding:0 0;
+    overflow: hidden;
   }
   .dialog-case-body .close{
     top:12px;
     right: 12px;
+    position:fixed;
   }
   .case-section{
     padding:60px 24px 24px 24px;
+  }
+  .dialog-case-content{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:95vh;
   }
 }
 
@@ -2617,7 +2624,7 @@ svg.stage-block-icon {
 
 .stage-opportunity-text {
   font-size: .73rem;
-  line-height: 1.55;
+  line-height: 1.2;
   color: var(--ink);
   background: var(--orange-bg);
   border-radius: 10px;
@@ -2647,7 +2654,7 @@ svg.stage-block-icon {
   .journey-stage::before {
     content: '';
     position: absolute;
-    left: 31px; top: 64px; bottom: 0;
+    left: 18px; top: 64px; bottom: 0;
     width: 2px;
     background: var(--line);
   }
@@ -2663,6 +2670,12 @@ svg.stage-block-icon {
   .stage-node svg { width: 21px; height: 21px; }
 
   .stage-card { margin-top: .3rem; }
+  .stage-dot{
+    position: absolute;
+    left: 10px;
+    top: 60px;
+  }
+  .journey-stage:last-child .stage-dot{display: none;}
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5304,6 +5317,9 @@ svg.stage-block-icon {
   }
   .conclusion-visual-list{
     width: 100%;
+  }
+  .conclusion-visual-mockup img{
+    height:auto;
   }
 }
 
