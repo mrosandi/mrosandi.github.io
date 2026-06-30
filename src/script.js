@@ -1191,19 +1191,266 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const reveals = document.querySelectorAll('.reveal');
 
-const observer = new IntersectionObserver((entries)=>{
-    entries.forEach((entry,index)=>{
-        if(entry.isIntersecting){
-            entry.target.style.transitionDelay =
-                (index % 4) * 120 + 'ms';
-            entry.target.classList.add('active');
-        }
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Masuk layar (baik dari atas maupun bawah) -> Zoom In
+        entry.target.classList.add("active");
+      } else {
+        // Keluar layar (baik ke atas maupun bawah) -> Zoom Out balik ke semula
+        entry.target.classList.remove("active");
+      }
     });
-},{
-    threshold:0.15
+  },
+  {
+    // Beri sedikit jarak margin bawah agar animasi terpicu lebih awal sebelum menyentuh batas layar
+    rootMargin: "-30px 0px -30px 0px",
+    threshold: 0.15,
+  },
+);
+
+reveals.forEach((el) => observer.observe(el));
+
+const stages = Array.from(document.querySelectorAll(".journey-stage"));
+const spineFill = document.getElementById("spine-fill");
+const track = document.getElementById("journey-track");
+
+/* stagger delay per stage */
+stages.forEach((el, i) => {
+  el.style.transitionDelay = i * 0.12 + "s";
 });
 
-reveals.forEach(el => observer.observe(el));
+let journeyTriggered = false;
+
+// Mengubah nama variabel menjadi journeyObserver agar tidak bentrok
+const journeyObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !journeyTriggered) {
+        journeyTriggered = true;
+        stages.forEach((el) => el.classList.add("is-visible"));
+        requestAnimationFrame(() => {
+          if (spineFill) spineFill.style.width = "100%";
+        });
+        journeyObserver.disconnect(); // Mematikan observer journey setelah aktif sekali
+      }
+    });
+  },
+  {
+    threshold: 0.18,
+  },
+);
+
+if (track) journeyObserver.observe(track);
+
+/* fallback: jika IO tidak didukung oleh browser jadul */
+if (!("IntersectionObserver" in window)) {
+  stages.forEach((el) => el.classList.add("is-visible"));
+  if (spineFill) spineFill.style.width = "100%";
+}
+
+/* ── Section 19: Roadmap — progressive spine + sequential reveal ── */
+(function () {
+  const track = document.getElementById("roadmap-track");
+  const spineFill = document.getElementById("roadmap-spine-fill");
+  if (!track) return;
+
+  const steps = Array.from(track.querySelectorAll(".roadmap-step"));
+
+  /* fill spine proportionally up to the last "released" milestone,
+     reaching just past the in-progress node for visual momentum */
+  const releasedCount = steps.filter(
+    (s) => s.dataset.status === "released",
+  ).length;
+  const progressBonus = steps.some((s) => s.dataset.status === "progress")
+    ? 0.5
+    : 0;
+  const fillRatio = (releasedCount + progressBonus) / steps.length;
+  const fillPercent = Math.min(100, fillRatio * 100);
+
+  steps.forEach((el, i) => {
+    el.style.transitionDelay = i * 0.12 + "s";
+  });
+
+  let revealed = false;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !revealed) {
+          revealed = true;
+          steps.forEach((el) => el.classList.add("is-visible"));
+          requestAnimationFrame(() => {
+            if (spineFill) spineFill.style.width = fillPercent + "%";
+          });
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+  observer.observe(track);
+
+  if (!("IntersectionObserver" in window)) {
+    steps.forEach((el) => el.classList.add("is-visible"));
+    if (spineFill) spineFill.style.width = fillPercent + "%";
+  }
+
+  /* hover: highlight connected timeline by dimming unrelated steps */
+  steps.forEach((step) => {
+    step.addEventListener("mouseenter", () => track.classList.add("has-hover"));
+    step.addEventListener("mouseleave", () =>
+      track.classList.remove("has-hover"),
+    );
+  });
+})();
+
+/* ── Section 08: User Flow — connectors + reveal ─────────── */
+(function () {
+  const track = document.getElementById("flow-track");
+  const svg = document.getElementById("flow-connectors");
+  if (!track || !svg) return;
+
+  const nodes = Array.from(track.querySelectorAll(".flow-node"));
+
+  /* current step index (1-based, from markup) defines how many
+     connector segments are "active" (orange + animated) */
+  const currentStep =
+    nodes.findIndex((n) => n.classList.contains("is-current")) + 1;
+
+  function isDesktopLayout() {
+    return window.matchMedia("(min-width: 1181px)").matches;
+  }
+
+  /* Build curved SVG paths that connect the center of each node's
+     icon badge to the next, using a gentle vertical arc so the
+     connector reads as a deliberate flow rather than a straight rule. */
+  function buildConnectors() {
+    svg.innerHTML = "";
+    if (!isDesktopLayout()) return;
+
+    const canvasRect = track.getBoundingClientRect();
+    svg.setAttribute("width", canvasRect.width);
+    svg.setAttribute("height", canvasRect.height);
+    svg.setAttribute("viewBox", `0 0 ${canvasRect.width} ${canvasRect.height}`);
+
+    const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+    const marker = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "marker",
+    );
+    marker.setAttribute("id", "flow-arrowhead");
+    marker.setAttribute("viewBox", "0 0 10 10");
+    marker.setAttribute("refX", "7");
+    marker.setAttribute("refY", "5");
+    marker.setAttribute("markerWidth", "7");
+    marker.setAttribute("markerHeight", "7");
+    marker.setAttribute("orient", "auto-start-reverse");
+    const arrowPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path",
+    );
+    arrowPath.setAttribute("d", "M0,0 L10,5 L0,10 Z");
+    arrowPath.setAttribute("fill", "var(--line)");
+    marker.appendChild(arrowPath);
+    defs.appendChild(marker);
+
+    const markerActive = marker.cloneNode(true);
+    markerActive.setAttribute("id", "flow-arrowhead-active");
+    markerActive.querySelector("path").setAttribute("fill", "var(--orange)");
+    defs.appendChild(markerActive);
+
+    svg.appendChild(defs);
+
+    for (let i = 0; i < nodes.length - 1; i++) {
+      const a = nodes[i]
+        .querySelector(".flow-node-icon")
+        .getBoundingClientRect();
+      const b = nodes[i + 1]
+        .querySelector(".flow-node-icon")
+        .getBoundingClientRect();
+
+      const x1 = a.right - canvasRect.left;
+      const y1 = a.top + a.height / 2 - canvasRect.top;
+      const x2 = b.left - canvasRect.left;
+      const y2 = b.top + b.height / 2 - canvasRect.top;
+
+      const midX = (x1 + x2) / 2;
+      /* gentle arc: alternate slight up/down curve for organic feel */
+      const arc = i % 2 === 0 ? -14 : 14;
+
+      const d = `M ${x1} ${y1} C ${midX} ${y1 + arc}, ${midX} ${y2 + arc}, ${x2} ${y2}`;
+
+      const active = i + 1 < currentStep;
+
+      const path = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "path",
+      );
+      path.setAttribute("d", d);
+      path.setAttribute(
+        "class",
+        "flow-connector-path" + (active ? " is-active" : ""),
+      );
+      path.setAttribute(
+        "marker-end",
+        active ? "url(#flow-arrowhead-active)" : "url(#flow-arrowhead)",
+      );
+      svg.appendChild(path);
+
+      if (active) {
+        const pulse = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "path",
+        );
+        pulse.setAttribute("d", d);
+        pulse.setAttribute("class", "flow-connector-pulse is-active");
+        svg.appendChild(pulse);
+      }
+    }
+  }
+
+  /* rebuild on resize (debounced) */
+  let resizeT;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(buildConnectors, 150);
+  });
+
+  /* sequential reveal left → right, then draw connectors */
+  nodes.forEach((el, i) => {
+    el.style.transitionDelay = i * 0.1 + "s";
+  });
+
+  let revealed = false;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !revealed) {
+          revealed = true;
+          nodes.forEach((el) => el.classList.add("is-visible"));
+          setTimeout(buildConnectors, 480);
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+  observer.observe(track);
+
+  if (!("IntersectionObserver" in window)) {
+    nodes.forEach((el) => el.classList.add("is-visible"));
+    buildConnectors();
+  }
+
+  /* hover: highlight connected path, dim unrelated nodes */
+  nodes.forEach((node) => {
+    node.addEventListener("mouseenter", () => track.classList.add("has-hover"));
+    node.addEventListener("mouseleave", () =>
+      track.classList.remove("has-hover"),
+    );
+  });
+})();
 
 /* =========================
    Chart Animation On Scroll
@@ -1218,81 +1465,80 @@ const chartObserver = new IntersectionObserver((entries)=>{
 
             chartInitialized = true;
 
-            new Chart(
-                document.getElementById('successChart'),
-                {
-                    type:'bar',
-                    data:{
-                        labels:[
-                            'ONBOARDING',
-                            'POST NEWS',
-                            'EVENTS',
-                            'MEMBERSHIP',
-                            'MARKETPLACE'
-                        ],
-                        datasets:[{
-                            data:[95,85,80,75,85],
-                            backgroundColor:'#f0541b',
-                            borderRadius: {
-                              topLeft: 8,
-                              topRight: 8,
-                              bottomLeft: 0,
-                              bottomRight: 0
-                            },
-                            barThickness: 40, 
-                            borderSkipped:false
-                        }]
+            new Chart(document.getElementById("successChart"), {
+              type: "bar",
+              data: {
+                labels: [
+                  "ONBOARDING",
+                  "POST NEWS",
+                  "EVENTS",
+                  "MEMBERSHIP",
+                  "MARKETPLACE",
+                ],
+                datasets: [
+                  {
+                    data: [95, 85, 80, 75, 85],
+                    backgroundColor: "#f0541b",
+                    borderRadius: {
+                      topLeft: 8,
+                      topRight: 8,
+                      bottomLeft: 0,
+                      bottomRight: 0,
                     },
-                    options:{
-                        responsive:true,
-                        maintainAspectRatio:false,
-                        animation:{
-                            duration:1200,
-                            easing:'easeOutQuart'
-                        },
-                        plugins:{
-                            legend:{
-                                display:false
-                            },
-                            tooltip:{
-                                callbacks:{
-                                    label:(ctx)=>
-                                        ctx.raw + '%'
-                                }
-                            }
-                        },
-                        scales:{
-                            y:{
-                                beginAtZero:true,
-                                max:100,
-                                grid:{
-                                    color:'#ececec'
-                                },
-                                ticks:{
-                                   stepSize: 20,
-                                   padding: 15,
-                                   color:'#848d9f'
-                                },
-                                border: {
-                                  display:false,
-                                  dash: [4, 4] // [dash length, gap length] for y-axis
-                                }
-                            },
-                            x:{
-                                grid:{
-                                    display:false
-                                },
-                                border:{
-                                  display:false
-                                },
-                                ticks:{
-                                   color:'#848d9f'
-                                },
-                            }
-                        }
-                    }
-                }
-            );
+                    barThickness: "flex",
+                    maxBarThickness: 50,
+                    borderSkipped: false,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                  duration: 1200,
+                  easing: "easeOutQuart",
+                },
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (ctx) => ctx.raw + "%",
+                    },
+                  },
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: {
+                      color: "#ececec",
+                    },
+                    ticks: {
+                      stepSize: 20,
+                      padding: 15,
+                      color: "#848d9f",
+                    },
+                    border: {
+                      display: false,
+                      dash: [4, 4], // [dash length, gap length] for y-axis
+                    },
+                  },
+                  x: {
+                    grid: {
+                      display: false,
+                    },
+                    border: {
+                      display: false,
+                    },
+                    ticks: {
+                      color: "#848d9f",
+                    },
+                  },
+                },
+              },
+            });
 
         }
     });

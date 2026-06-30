@@ -1070,6 +1070,13 @@ footer small {
   touch-action: pan-y; 
   overscroll-behavior: contain;
 }
+.overlay-scroll:target .dialog-body {
+  top: 0;
+  -webkit-animation-name: fade-in;
+  animation-name: fade-in;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
+}
 
 /* Dialog Container Casing */
 .dialog-case-body {
@@ -1083,7 +1090,7 @@ footer small {
   margin: 40px auto;
   padding: 0;
   position: relative;
-  top: 0 ;
+  top: 0;
   animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -1191,6 +1198,9 @@ footer small {
 }
 
 @media (max-width: 768px){
+  .overlay-scroll{
+    padding:0 0;
+  }
   .dialog-case-body .close{
     top:12px;
     right: 12px;
@@ -1799,6 +1809,16 @@ h2.case-hero-subtitle {
 }
 
 @media (max-width: 560px) {
+  .hmw-card{
+    padding: 24px;
+  gap: 16px;
+  }
+  .hmw-statement{
+    font-size: 1rem;
+  }
+  .hmw-quote-icon{
+    margin-bottom:0;
+  }
   .sticky-grid {
     grid-template-columns: 1fr;
   }
@@ -2314,8 +2334,997 @@ h2.case-hero-subtitle {
   font-size: 0.8rem;
 }
 
+
 /* ──────────────────────────────────────────────────────────────────────────
-   SECTION 07: UX GOALS
+   SECTION 07: USER JOURNEY MAP
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── Timeline shell ───────────────────────────────────────── */
+.journey-timeline {
+  position: relative;
+  margin: 0 auto;
+
+  --orange:    #F0541B;
+  --orange-lt: #FF8A5B;
+  --orange-bg: #FFE8DF;
+
+  --navy-deep: #0F1E4A;
+  --navy:      #1D2F6F;
+  --blue-mid:  #4A6FD6;
+
+  --cyan:      #25B6D2;
+  --teal:      #2CB67D;
+  --violet:    #8E6CF5;
+
+  --ink:    #14182B;
+  --muted:  #6B7280;
+  --line:   #E8E6E2;
+  --paper:  #FBFAF8;
+  --white:  #FFFFFF;
+}
+
+/* connecting spine — desktop only */
+.journey-spine {
+  position: absolute;
+  top: 97px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--line) 4%,
+    var(--line) 96%,
+    transparent 100%);
+  z-index: 0;
+}
+
+.journey-spine-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--orange), var(--orange-lt));
+  transform-origin: left;
+  transition: width 1.4s cubic-bezier(.4,0,.2,1);
+}
+
+.journey-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.1rem;
+  z-index: 1;
+}
+
+/* ── Stage column ─────────────────────────────────────────── */
+.journey-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s cubic-bezier(.25,.46,.45,.94), transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+
+.journey-stage.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger handled via inline transition-delay per stage in markup */
+
+/* ── Node on spine ────────────────────────────────────────── */
+.stage-node {
+  position: relative;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+  z-index: 2;
+  transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+
+.stage-node svg {
+  width: 26px; height: 26px;
+  stroke: var(--navy);
+  transition: stroke .35s ease;
+  margin:auto;
+}
+.stage-dot{
+  position: relative;
+  display: flex;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 18px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--orange);
+}
+.stage-dot-inner{
+  width: 8px;
+  height: 8px;
+  display: block;
+  background: var(--orange-lt);
+  border-radius: 8px;
+}
+
+.journey-stage:hover .stage-node {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 6px rgba(240,84,27,.10), 0 8px 20px rgba(240,84,27,.18);
+  transform: scale(1.06);
+}
+.journey-stage:hover .stage-node svg { stroke: var(--orange); }
+
+/* stage number tab */
+.stage-num {
+  position: absolute;
+  top: -8px; right: -6px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  color: white;
+  font-family: JetBrains Mono, monospace;
+  font-size: .62rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.stage-card {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  margin-top: 1.6rem;
+  border-radius: 20px;
+  padding: 1.4rem 1.25rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(15,30,74,.04);
+  transition: transform .3s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .3s ease,
+              border-color .3s ease;
+}
+
+.journey-stage:hover .stage-card {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15,30,74,.10), 0 4px 14px rgba(240,84,27,.08);
+  border-color: rgba(240,84,27,.25);
+}
+
+.stage-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: .65rem;
+}
+
+/* emotion chip */
+.stage-emotion {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: .26rem .62rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+.stage-emotion-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* per-stage emotion coloring */
+.journey-stage[data-stage="1"] .stage-emotion { background: rgba(74,111,214,.10); color: var(--blue-mid); }
+.journey-stage[data-stage="1"] .stage-emotion-dot { background: var(--blue-mid); }
+.journey-stage[data-stage="1"] .stage-num{background: var(--blue-mid);}
+
+.journey-stage[data-stage="2"] .stage-emotion { background: rgba(37,182,210,.10); color: var(--cyan); }
+.journey-stage[data-stage="2"] .stage-emotion-dot { background: var(--cyan); }
+.journey-stage[data-stage="2"] .stage-num{background: var(--cyan);}
+
+.journey-stage[data-stage="3"] .stage-emotion { background: rgba(142,108,245,.10); color: var(--violet); }
+.journey-stage[data-stage="3"] .stage-emotion-dot { background: var(--violet); }
+.journey-stage[data-stage="3"] .stage-num{background: var(--violet);}
+
+.journey-stage[data-stage="4"] .stage-emotion { background: rgba(44,182,125,.10); color: var(--teal); }
+.journey-stage[data-stage="4"] .stage-emotion-dot { background: var(--teal); }
+.journey-stage[data-stage="4"] .stage-num{background: var(--teal);}
+
+.journey-stage[data-stage="5"] .stage-emotion { background: rgba(240,84,27,.10); color: var(--orange); }
+.journey-stage[data-stage="5"] .stage-emotion-dot { background: var(--orange); }
+.journey-stage[data-stage="5"] .stage-num{background: var(--orange);}
+
+.journey-stage[data-stage="6"] .stage-emotion { background: rgba(15,30,74,.08); color: var(--navy-deep); }
+.journey-stage[data-stage="6"] .stage-emotion-dot { background: var(--navy-deep); }
+
+/* goal */
+.stage-goal {
+  font-size: .78rem;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed var(--line);
+}
+
+/* block label */
+.stage-block { margin-bottom: .9rem; }
+.stage-block:last-child { margin-bottom: 0; }
+
+.stage-block-label {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .45rem;
+}
+
+.stage-block-label.label-actions   { color: var(--navy); }
+.stage-block-label.label-pain      { color: #D64545; }
+.stage-block-label.label-opportunity { color: var(--orange); }
+
+svg.stage-block-icon {
+  width: 12px; height: 12px;
+  flex-shrink: 0;
+  margin:0;
+}
+
+.stage-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .32rem;
+}
+
+.stage-list li {
+  font-size: .73rem;
+  line-height: 1.2;
+  color: var(--muted);
+  padding-left: .85rem;
+  position: relative;
+}
+
+.stage-list.actions li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: .5em;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--navy);
+  opacity: .5;
+}
+
+.stage-list.pain li {
+  color: #9A4040;
+}
+.stage-list.pain li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: .5em;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #D64545;
+  opacity: .6;
+}
+
+.stage-opportunity-text {
+  font-size: .73rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--orange-bg);
+  border-radius: 10px;
+  padding: .6rem .7rem;
+}
+
+/* ── Responsive: tablet ───────────────────────────────────── */
+@media (max-width: 1180px) {
+  .journey-track { grid-template-columns: repeat(3, 1fr); gap: 1.4rem 1.1rem; row-gap: 2.4rem; }
+  .journey-spine { display: none; }
+}
+
+/* ── Responsive: mobile ───────────────────────────────────── */
+@media (max-width: 720px) {
+  .journey-section { padding: 4.5rem 5.5vw 4rem; }
+  .journey-header { margin-bottom: 3rem; }
+  .journey-track {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .journey-stage {
+    position: relative;
+    padding-left: 2.2rem;
+    padding-bottom: 2.4rem;
+    align-items: flex-start;
+  }
+  .journey-stage::before {
+    content: '';
+    position: absolute;
+    left: 31px; top: 64px; bottom: 0;
+    width: 2px;
+    background: var(--line);
+  }
+  .journey-stage:last-child::before { display: none; }
+  .journey-stage:last-child { padding-bottom: 0; }
+
+  .stage-node {
+    position: absolute;
+    left: 0; top: 0;
+    width: 52px; height: 52px;
+    margin-bottom: 0;
+  }
+  .stage-node svg { width: 21px; height: 21px; }
+
+  .stage-card { margin-top: .3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 08 — USER FLOW
+   ═══════════════════════════════════════════════════════════ */
+.flow-section {
+
+   --orange:    #F0541B;
+  --orange-lt: #FF8A5B;
+  --orange-bg: #FFE8DF;
+
+  --navy-deep: #0F1E4A;
+  --navy:      #1D2F6F;
+  --blue-mid:  #4A6FD6;
+
+  --cyan:      #25B6D2;
+  --teal:      #2CB67D;
+  --violet:    #8E6CF5;
+
+  --ink:    #14182B;
+  --muted:  #6B7280;
+  --line:   #E8E6E2;
+  --paper:  #FBFAF8;
+  --white:  #FFFFFF;
+
+  position: relative;
+  padding: 7rem 6vw 7.5rem;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+/* dotted grid backdrop */
+.flow-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(15,30,74,.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 25%, transparent 78%);
+  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 25%, transparent 78%);
+  pointer-events: none;
+}
+
+/* soft gradient blobs */
+.flow-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 46% 50% at 12% 18%, rgba(240,84,27,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 46% at 90% 78%, rgba(37,182,210,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.flow-canvas {
+  position: relative;
+  max-width: 1480px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* connector SVG layer sits behind nodes, full width of track */
+.flow-connectors {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flow-connector-path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 2;
+  transition: stroke 1s cubic-bezier(.4,0,.2,1);
+}
+
+.flow-connector-path.is-active {
+  stroke: var(--orange);
+}
+
+.flow-connector-pulse {
+  fill: none;
+  stroke: var(--orange-lt);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 10 220;
+  stroke-dashoffset: 0;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.flow-connector-pulse.is-active {
+  opacity: 1;
+  animation: flow-pulse-travel 2.6s linear infinite;
+}
+
+@keyframes flow-pulse-travel {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -460; }
+}
+
+/* node track */
+.flow-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: .9rem;
+  z-index: 1;
+}
+
+.flow-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .55s cubic-bezier(.25,.46,.45,.94),
+              transform .55s cubic-bezier(.25,.46,.45,.94);
+}
+
+.flow-node.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* status ribbon above node */
+.flow-node-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+  height: 16px;
+  color: var(--teal);
+}
+
+.flow-node-status svg {
+  width: 11px; height: 11px;
+  stroke: var(--teal);
+  flex-shrink: 0;
+}
+
+.flow-node:not(.is-completed):not(.is-current) .flow-node-status { visibility: hidden; }
+
+.flow-node.is-current .flow-node-status {
+  color: var(--orange);
+}
+
+/* icon badge */
+.flow-node-icon {
+  position: relative;
+  width: 60px; height: 60px;
+  border-radius: 18px;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.1rem;
+  z-index: 2;
+  transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+
+.flow-node-icon svg {
+  width: 24px; height: 24px;
+  stroke: var(--navy);
+  transition: stroke .3s ease;
+}
+
+/* completed state */
+.flow-node.is-completed .flow-node-icon {
+  border-color: rgba(44,182,125,.35);
+  background: rgba(44,182,125,.06);
+}
+.flow-node.is-completed .flow-node-icon svg { stroke: var(--teal); }
+
+/* current state — orange highlight + glow + pulsing border */
+.flow-node.is-current .flow-node-icon {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 6px rgba(240,84,27,.12), 0 10px 26px rgba(240,84,27,.22);
+  animation: flow-node-pulse 2.2s ease-in-out infinite;
+}
+.flow-node.is-current .flow-node-icon svg { stroke: var(--orange); }
+
+@keyframes flow-node-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(240,84,27,.12), 0 10px 26px rgba(240,84,27,.22); }
+  50%      { box-shadow: 0 0 0 11px rgba(240,84,27,.06), 0 10px 30px rgba(240,84,27,.28); }
+}
+
+/* hover lift */
+.flow-node:hover .flow-node-icon {
+  transform: scale(1.06) translateY(-3px);
+  box-shadow: 0 14px 28px rgba(15,30,74,.14);
+}
+.flow-node.is-current:hover .flow-node-icon {
+  box-shadow: 0 0 0 7px rgba(240,84,27,.14), 0 16px 30px rgba(240,84,27,.30);
+}
+
+/* node step number */
+.flow-node-step {
+  position: absolute;
+  top: -7px; left: -7px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  color: white;
+  font-family: 'Syne', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.flow-node.is-completed .flow-node-step { background: var(--teal); }
+.flow-node.is-current .flow-node-step   { background: var(--orange); }
+
+/* copy */
+.flow-node-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+  letter-spacing: -.01em;
+  margin-bottom: .4rem;
+}
+
+.flow-node-desc {
+  font-size: .72rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 17ch;
+}
+
+/* connected-path highlight on hover via JS toggling data-flow-active on svg paths;
+   also dim non-hovered nodes slightly for focus */
+.flow-track.has-hover .flow-node:not(:hover) {
+  opacity: .55;
+}
+.flow-track.has-hover .flow-node:not(:hover) .flow-node-icon {
+  transform: none;
+  box-shadow: none;
+}
+.flow-track.has-hover .flow-node.is-current:not(:hover) .flow-node-icon {
+  box-shadow: 0 0 0 6px rgba(240,84,27,.08);
+  animation: none;
+}
+
+/* ── Responsive: tablet — two rows ───────────────────────── */
+@media (max-width: 1180px) {
+  .flow-track {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 3rem;
+  }
+  .flow-connectors { display: none; }
+  .flow-node-desc { max-width: 20ch; }
+}
+
+@media (max-width: 860px) {
+  .flow-track { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Responsive: mobile — vertical flow ──────────────────── */
+@media (max-width: 640px) {
+  .flow-section { padding: 4.5rem 6vw 4rem; }
+  .flow-track {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .flow-node {
+    position: relative;
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-bottom: 2.2rem;
+  }
+  .flow-node::before {
+    content: '';
+    position: absolute;
+    left: 29px; top: 60px; bottom: 4px;
+    width: 2px;
+    background: var(--line);
+  }
+  .flow-node.is-completed::before { background: var(--teal); opacity: .4; }
+  .flow-node:last-child::before { display: none; }
+  .flow-node:last-child { padding-bottom: 0; }
+
+  .flow-node-icon { margin-bottom: 0; margin-right: 1rem; flex-shrink: 0; }
+  .flow-node-body { display: flex; flex-direction: column; padding-top: .55rem; }
+  .flow-node-status { margin-bottom: .3rem; justify-content: flex-start; }
+  .flow-node-desc { max-width: 32ch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-node.is-current .flow-node-icon { animation: none; }
+  .flow-connector-pulse { animation: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SECTION 19 — ROADMAP / NEXT STEPS
+   ═══════════════════════════════════════════════════════════ */
+.roadmap-section {
+  position: relative;
+  padding: 7rem 6vw 7.5rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--paper) 0%, #F4F2EE 100%);
+}
+
+/* dotted grid backdrop */
+.roadmap-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(15,30,74,.06) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 78% 72% at 50% 40%, black 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 78% 72% at 50% 40%, black 25%, transparent 80%);
+  pointer-events: none;
+}
+
+/* soft radial gradients + abstract shapes */
+.roadmap-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 42% 48% at 8% 12%, rgba(240,84,27,.06) 0%, transparent 70%),
+    radial-gradient(ellipse 38% 44% at 94% 20%, rgba(142,108,245,.05) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 46% at 50% 100%, rgba(74,111,214,.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* floating particles — abstract geometric dots, low opacity */
+.roadmap-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: .35;
+}
+.roadmap-particle.rp-1 { width: 8px;  height: 8px;  top: 12%; left: 6%;  background: var(--orange);  animation: roadmap-float 7s ease-in-out infinite; }
+.roadmap-particle.rp-2 { width: 5px;  height: 5px;  top: 70%; left: 11%; background: var(--violet);  animation: roadmap-float 9s ease-in-out infinite 1s; }
+.roadmap-particle.rp-3 { width: 10px; height: 10px; top: 22%; right: 8%; background: var(--cyan);    animation: roadmap-float 8s ease-in-out infinite .5s; }
+.roadmap-particle.rp-4 { width: 6px;  height: 6px;  top: 78%; right: 14%;background: var(--teal);    animation: roadmap-float 6.5s ease-in-out infinite 1.5s; }
+.roadmap-particle.rp-5 { width: 4px;  height: 4px;  top: 46%; left: 2%;  background: var(--blue-mid);animation: roadmap-float 10s ease-in-out infinite .3s; }
+
+@keyframes roadmap-float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-14px) translateX(6px); }
+}
+
+.roadmap-canvas {
+  position: relative;
+  max-width: 1480px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* ── Timeline spine ───────────────────────────────────────── */
+.roadmap-spine {
+  position: absolute;
+  top: 17px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 0;
+}
+
+.roadmap-spine-track {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line) 0px, var(--line) 6px,
+    transparent 6px, transparent 12px
+  );
+}
+
+.roadmap-spine-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--teal), var(--orange));
+  transition: width 1.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Track / grid ─────────────────────────────────────────── */
+.roadmap-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.3rem;
+  z-index: 1;
+}
+
+.roadmap-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.25,.46,.45,.94),
+              transform .6s cubic-bezier(.25,.46,.45,.94);
+}
+
+.roadmap-step.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* node on spine */
+.roadmap-node {
+  position: relative;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2.5px solid var(--line);
+  margin-bottom: 1.6rem;
+  z-index: 2;
+  flex-shrink: 0;
+  transition: border-color .4s ease, box-shadow .4s ease, background .4s ease;
+}
+
+.roadmap-node-inner {
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--line);
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity .4s ease, transform .4s cubic-bezier(.34,1.56,.64,1), background .4s ease;
+}
+
+.roadmap-step.is-visible .roadmap-node-inner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* status → node coloring */
+.roadmap-step[data-status="released"] .roadmap-node { border-color: var(--teal); }
+.roadmap-step[data-status="released"] .roadmap-node-inner { background: var(--teal); }
+
+.roadmap-step[data-status="progress"] .roadmap-node {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 6px rgba(240,84,27,.12);
+  animation: roadmap-node-pulse 2.2s ease-in-out infinite;
+}
+.roadmap-step[data-status="progress"] .roadmap-node-inner { background: var(--orange); }
+
+@keyframes roadmap-node-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(240,84,27,.12); }
+  50%      { box-shadow: 0 0 0 11px rgba(240,84,27,.06); }
+}
+
+.roadmap-step[data-status="planned"] .roadmap-node { border-color: var(--blue-mid); }
+.roadmap-step[data-status="planned"] .roadmap-node-inner { background: var(--blue-mid); opacity: .55; transform: scale(.7); }
+.roadmap-step.is-visible[data-status="planned"] .roadmap-node-inner { opacity: .55; transform: scale(.7); }
+
+.roadmap-step[data-status="future"] .roadmap-node { border-color: var(--violet); border-style: dashed; }
+.roadmap-step[data-status="future"] .roadmap-node-inner { background: var(--violet); opacity: .4; transform: scale(.55); }
+.roadmap-step.is-visible[data-status="future"] .roadmap-node-inner { opacity: .4; transform: scale(.55); }
+
+/* ── Card ─────────────────────────────────────────────────── */
+.roadmap-card {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 1.5rem 1.3rem 1.6rem;
+  box-shadow: 0 2px 6px rgba(15,30,74,.05);
+  transition: transform .32s cubic-bezier(.25,.46,.45,.94),
+              box-shadow .32s ease,
+              border-color .32s ease;
+}
+
+.roadmap-step:hover .roadmap-card {
+  transform: translateY(-7px) scale(1.03);
+  box-shadow: 0 24px 44px rgba(15,30,74,.12);
+}
+
+/* released cards get soft orange-tinted glow on hover per status */
+.roadmap-step[data-status="released"]:hover .roadmap-card {
+  box-shadow: 0 24px 44px rgba(44,182,125,.14), 0 4px 14px rgba(44,182,125,.10);
+  border-color: rgba(44,182,125,.3);
+}
+.roadmap-step[data-status="progress"]:hover .roadmap-card {
+  box-shadow: 0 24px 44px rgba(240,84,27,.16), 0 4px 14px rgba(240,84,27,.12);
+  border-color: rgba(240,84,27,.32);
+}
+.roadmap-step[data-status="planned"]:hover .roadmap-card {
+  box-shadow: 0 24px 44px rgba(74,111,214,.14), 0 4px 14px rgba(74,111,214,.10);
+  border-color: rgba(74,111,214,.3);
+}
+.roadmap-step[data-status="future"]:hover .roadmap-card {
+  box-shadow: 0 24px 44px rgba(142,108,245,.14), 0 4px 14px rgba(142,108,245,.10);
+  border-color: rgba(142,108,245,.3);
+}
+
+/* completed milestone gets a permanent soft glow, even before hover */
+.roadmap-step[data-status="released"] .roadmap-card {
+  box-shadow: 0 4px 16px rgba(44,182,125,.08);
+}
+
+/* status badge */
+.roadmap-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: .28rem .65rem;
+  border-radius: 100px;
+  margin-bottom: .85rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .5s ease .15s, transform .5s ease .15s;
+}
+.roadmap-step.is-visible .roadmap-badge { opacity: 1; transform: translateY(0); }
+
+.roadmap-badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+.roadmap-step[data-status="released"] .roadmap-badge { background: rgba(44,182,125,.10); color: var(--teal); }
+.roadmap-step[data-status="released"] .roadmap-badge-dot { background: var(--teal); }
+
+.roadmap-step[data-status="progress"] .roadmap-badge { background: rgba(240,84,27,.10); color: var(--orange); }
+.roadmap-step[data-status="progress"] .roadmap-badge-dot { background: var(--orange); }
+
+.roadmap-step[data-status="planned"] .roadmap-badge { background: rgba(74,111,214,.10); color: var(--blue-mid); }
+.roadmap-step[data-status="planned"] .roadmap-badge-dot { background: var(--blue-mid); }
+
+.roadmap-step[data-status="future"] .roadmap-badge { background: rgba(142,108,245,.10); color: var(--violet); }
+.roadmap-step[data-status="future"] .roadmap-badge-dot { background: var(--violet); }
+
+/* quarter label */
+.roadmap-quarter {
+  font-family: 'Syne', sans-serif;
+  font-size: .64rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .7rem;
+}
+
+/* icon */
+.roadmap-icon {
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: scale(.4) rotate(-12deg);
+  transition: opacity .5s cubic-bezier(.34,1.56,.64,1) .25s,
+              transform .5s cubic-bezier(.34,1.56,.64,1) .25s;
+}
+.roadmap-step.is-visible .roadmap-icon { opacity: 1; transform: scale(1) rotate(0); }
+
+.roadmap-icon svg { width: 21px; height: 21px; }
+
+.roadmap-step[data-status="released"] .roadmap-icon { background: rgba(44,182,125,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.roadmap-step[data-status="released"] .roadmap-icon svg { stroke: var(--teal); }
+
+.roadmap-step[data-status="progress"] .roadmap-icon { background: rgba(240,84,27,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.roadmap-step[data-status="progress"] .roadmap-icon svg { stroke: var(--orange); }
+
+.roadmap-step[data-status="planned"] .roadmap-icon { background: rgba(74,111,214,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.roadmap-step[data-status="planned"] .roadmap-icon svg { stroke: var(--blue-mid); }
+
+.roadmap-step[data-status="future"] .roadmap-icon { background: rgba(142,108,245,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+.roadmap-step[data-status="future"] .roadmap-icon svg { stroke: var(--violet); }
+
+.roadmap-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+  letter-spacing: -.01em;
+  line-height: 1.28;
+  margin-bottom: .55rem;
+}
+
+.roadmap-card-desc {
+  font-size: .76rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* hover: highlight connected timeline segment */
+.roadmap-track.has-hover .roadmap-step:not(:hover) { opacity: .55; }
+.roadmap-track.has-hover .roadmap-step:not(:hover) .roadmap-card { transform: none; box-shadow: none; }
+
+/* ── Responsive: tablet — two rows ───────────────────────── */
+@media (max-width: 1180px) {
+  .roadmap-track {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3rem;
+  }
+  .roadmap-spine { display: none; }
+}
+
+/* ── Responsive: mobile — vertical timeline ──────────────── */
+@media (max-width: 640px) {
+  .roadmap-section { padding: 4.5rem 6vw 4rem; }
+  .roadmap-track {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .roadmap-step {
+    position: relative;
+    align-items: flex-start;
+    padding-left: 2.4rem;
+    padding-bottom: 2.6rem;
+  }
+  .roadmap-step::before {
+    content: '';
+    position: absolute;
+    left: 17px; top: 36px; bottom: 4px;
+    width: 2px;
+    background: repeating-linear-gradient(180deg, var(--line) 0px, var(--line) 6px, transparent 6px, transparent 12px);
+  }
+  .roadmap-step[data-status="released"]::before,
+  .roadmap-step[data-status="progress"]::before {
+    background: linear-gradient(180deg, var(--teal), var(--orange));
+  }
+  .roadmap-step:last-child::before { display: none; }
+  .roadmap-step:last-child { padding-bottom: 0; }
+
+  .roadmap-node {
+    position: absolute;
+    left: 0; top: 0;
+    margin-bottom: 0;
+  }
+  .roadmap-card { margin-top: .2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roadmap-step[data-status="progress"] .roadmap-node { animation: none; }
+  .roadmap-particle { animation: none; }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   SECTION 10: UX GOALS
    ────────────────────────────────────────────────────────────────────────── */
 .case-objectives {
   padding-bottom: 56px ;
@@ -2444,7 +3453,7 @@ h2.case-hero-subtitle {
   margin-bottom: 40px;
 }
 
-.flow-node {
+.arch-flow-node {
   background: #FFFFFF;
   border: 1px solid #EFEFEF;
   border-radius: 12px;
@@ -2455,7 +3464,7 @@ h2.case-hero-subtitle {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
 }
 
-.flow-node span {
+.arch-flow-node span {
   font-size: 1rem;
   color: #ffffff;
   margin:0 auto 10px;
@@ -2469,14 +3478,14 @@ h2.case-hero-subtitle {
   border-radius: 14px;
 }
 
-.flow-node h5 {
+.arch-flow-node h5 {
   font-size: 1.1rem;
   font-weight: 800;
   color: #1B1B1B;
   margin-bottom: 4px;
 }
 
-.flow-node p {
+.arch-flow-node p {
   font-size: 0.85rem;
   color: #777777;
   margin: 0;
@@ -2809,6 +3818,10 @@ h2.case-hero-subtitle {
   justify-content: center;
 }
 
+@media (max-width: 767px){
+
+}
+
 /* ──────────────────────────────────────────────────────────────────────────
    SECTION 10: WIREFRAMES
    ────────────────────────────────────────────────────────────────────────── */
@@ -3127,6 +4140,9 @@ h2.case-hero-subtitle {
   --shadow-card: 0 8px 48px rgba(240,84,27,.10), 0 2px 12px rgba(0,0,0,.06);
 }
 
+.case-ecosystem-model .case-section-header{
+  border-color: rgba(0,0,0,0.1);
+}
 /* ── Section ──────────────────────────────────────────────── */
 .section-plexus {
   position: relative;
@@ -3473,12 +4489,12 @@ h2.case-hero-subtitle {
 }
  
 .feature-item-title {
-  font-family: 'Syne', sans-serif;
   font-size: .9rem;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.25;
   margin-bottom: .4rem;
+  letter-spacing: -0.04rem;
 }
  
 .feature-item-desc {
@@ -3794,18 +4810,24 @@ h2.case-hero-subtitle {
    SCROLL REVEAL
 ========================= */
 
-.reveal{
-    opacity:0;
+.reveal {
+    opacity: 0;
+    /* Kondisi awal: elemen mengecil (Zoom Out) */
     transform:translateY(40px);
-    transition:
-        opacity .6s ease-out,
-        transform .6s ease-out;
+    transition: 
+        opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+        transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Menggunakan cubic-bezier agar transisinya halus mirip AOS */
+    transform-origin: center;
 }
 
-.reveal.active{
-    opacity:1;
+.reveal.active {
+    opacity: 1;
+    /* Kondisi aktif: elemen membesar ke ukuran asli (Zoom In) */
     transform:translateY(0);
 }
+
+
 
 /* =========================
    RESPONSIVE
@@ -3834,6 +4856,7 @@ h2.case-hero-subtitle {
 
     .chart-wrapper{
         height:300px;
+        width: 99%;
     }
 }
 
@@ -4250,6 +5273,9 @@ h2.case-hero-subtitle {
 }
 
 @media (max-width: 768px) {
+  .case-hero{
+    height: auto;
+  }
   .component-tokens-showcase {
     grid-template-columns: 1fr;
   }
