@@ -1035,7 +1035,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 1. PROSES SUBMIT FORM (STANDAR RESMI WEB3FORMS JSON)
   if (contactForm) {
-    contactForm.addEventListener("submit", function (e) {
+    contactForm.addEventListener("submit", async function (e) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -1044,46 +1044,40 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.disabled = true;
       }
 
-      // Mengubah FormData menjadi Objek JSON Bersih (Wajib bagi Web3Forms)
-      const formData = new FormData(contactForm);
-      const object = {};
-      formData.forEach((value, key) => {
-        object[key] = value;
-      });
-      const jsonData = JSON.stringify(object);
+      try {
+        const formData = new FormData(contactForm);
 
-      // Mengirim data ke API Web3Forms dengan Header JSON murni
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: jsonData,
-      })
-        .then(async (response) => {
-          const res = await response.json();
+        const data = Object.fromEntries(formData.entries());
 
-          // Membaca respon sukses dari Web3Forms (HTTP 200 atau success: true)
-          if (response.status === 200 || res.success === true) {
-            // EMAIL SUKSES MASUK -> AMAN UNTUK MENGUBAH TAMPILAN DIALOG
-            showSuccessState();
-          } else {
-            // Jika key salah atau parameter tidak lengkap
-            alert(
-              "Gagal: " + (res.message || "Periksa kembali Access Key Anda."),
-            );
-            resetButton();
-          }
-        })
-        .catch((error) => {
-          // Jika terjadi error jaringan/CORS asli, tombol akan di-reset dan form TIDAK AKAN disembunyikan
-          console.error("Detail Kendala Jaringan:", error);
-          alert(
-            "Gagal mengirim! Koneksi Anda diblokir oleh browser atau ekstensi AdBlocker.",
-          );
-          resetButton();
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(data),
         });
+
+        const res = await response.json();
+
+        console.log("Status:", response.status);
+        console.log("Response:", res);
+
+        if (response.ok && res.success) {
+          showSuccessState();
+        } else {
+          alert(res.message || "Failed to submit the form.");
+          resetButton();
+        }
+      } catch (error) {
+        console.error("Submit Error:", error);
+
+        alert(
+          "Unable to send the form. Please check your internet connection or browser extensions (such as AdBlock).",
+        );
+
+        resetButton();
+      }
     });
   }
 
