@@ -1200,7 +1200,8 @@ footer small {
 @media (max-width: 768px){
   .overlay-scroll{
     padding:0 0;
-    overflow: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .dialog-case-body .close{
     top:12px;
