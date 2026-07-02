@@ -1229,7 +1229,7 @@ footer small {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
     overscroll-behavior: contain;
-    border:1px solid red;
+    border:1px solid blue;
   }
 }
 
