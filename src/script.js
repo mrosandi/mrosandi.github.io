@@ -809,6 +809,7 @@ void main(){
   document.addEventListener(
     "touchmove",
     (e) => {
+      if (e.target.closest('.overlay-scroll')) return;
       const t = e.touches[0];
       rawX = t.clientX;
       rawY = t.clientY;
