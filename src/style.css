@@ -2690,9 +2690,13 @@ svg.stage-block-icon {
 /* ═══════════════════════════════════════════════════════════
    SECTION 08 — USER FLOW
    ═══════════════════════════════════════════════════════════ */
-.flow-section {
+.flow-canvas {
+  position: relative;
+  width:100%;
+  margin: 0 auto;
+  z-index: 1;
 
-   --orange:    #F0541B;
+  --orange:    #F0541B;
   --orange-lt: #FF8A5B;
   --orange-bg: #FFE8DF;
 
@@ -2709,45 +2713,10 @@ svg.stage-block-icon {
   --line:   #E8E6E2;
   --paper:  #FBFAF8;
   --white:  #FFFFFF;
-
-  position: relative;
-  padding: 7rem 6vw 7.5rem;
-  overflow: hidden;
-  background: var(--paper);
-}
-
-/* dotted grid backdrop */
-.flow-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(15,30,74,.07) 1px, transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 25%, transparent 78%);
-  mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, black 25%, transparent 78%);
-  pointer-events: none;
-}
-
-/* soft gradient blobs */
-.flow-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 46% 50% at 12% 18%, rgba(240,84,27,.06) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 46% at 90% 78%, rgba(37,182,210,.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.flow-canvas {
-  position: relative;
-  max-width: 1480px;
-  margin: 0 auto;
-  z-index: 1;
 }
 
 /* connector SVG layer sits behind nodes, full width of track */
-.flow-connectors {
+svg.flow-connectors {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -2755,6 +2724,7 @@ svg.stage-block-icon {
   overflow: visible;
   pointer-events: none;
   z-index: 0;
+  margin:0;
 }
 
 .flow-connector-path {
@@ -2833,6 +2803,7 @@ svg.stage-block-icon {
   width: 11px; height: 11px;
   stroke: var(--teal);
   flex-shrink: 0;
+  margin:0;
 }
 
 .flow-node:not(.is-completed):not(.is-current) .flow-node-status { visibility: hidden; }
@@ -2860,6 +2831,7 @@ svg.stage-block-icon {
   width: 24px; height: 24px;
   stroke: var(--navy);
   transition: stroke .3s ease;
+  margin:0;
 }
 
 /* completed state */
@@ -2913,19 +2885,17 @@ svg.stage-block-icon {
 
 /* copy */
 .flow-node-title {
-  font-family: 'Syne', sans-serif;
   font-size: .92rem;
   font-weight: 700;
-  color: var(--navy-deep);
   letter-spacing: -.01em;
   margin-bottom: .4rem;
 }
 
 .flow-node-desc {
-  font-size: .72rem;
-  line-height: 1.5;
+  font-size: .7rem;
+  line-height: 1.3;
   color: var(--muted);
-  max-width: 17ch;
+  max-width: 95%;
 }
 
 /* connected-path highlight on hover via JS toggling data-flow-active on svg paths;
@@ -2996,60 +2966,23 @@ svg.stage-block-icon {
 /* ═══════════════════════════════════════════════════════════
    SECTION 19 — ROADMAP / NEXT STEPS
    ═══════════════════════════════════════════════════════════ */
-.roadmap-section {
-  position: relative;
-  padding: 7rem 6vw 7.5rem;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--paper) 0%, #F4F2EE 100%);
+.case-roadmap {
+  padding-bottom: 56px ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
-
-/* dotted grid backdrop */
-.roadmap-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(15,30,74,.06) 1px, transparent 1px);
-  background-size: 30px 30px;
-  -webkit-mask-image: radial-gradient(ellipse 78% 72% at 50% 40%, black 25%, transparent 80%);
-  mask-image: radial-gradient(ellipse 78% 72% at 50% 40%, black 25%, transparent 80%);
-  pointer-events: none;
-}
-
-/* soft radial gradients + abstract shapes */
-.roadmap-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 42% 48% at 8% 12%, rgba(240,84,27,.06) 0%, transparent 70%),
-    radial-gradient(ellipse 38% 44% at 94% 20%, rgba(142,108,245,.05) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 46% at 50% 100%, rgba(74,111,214,.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* floating particles — abstract geometric dots, low opacity */
-.roadmap-particle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: .35;
-}
-.roadmap-particle.rp-1 { width: 8px;  height: 8px;  top: 12%; left: 6%;  background: var(--orange);  animation: roadmap-float 7s ease-in-out infinite; }
-.roadmap-particle.rp-2 { width: 5px;  height: 5px;  top: 70%; left: 11%; background: var(--violet);  animation: roadmap-float 9s ease-in-out infinite 1s; }
-.roadmap-particle.rp-3 { width: 10px; height: 10px; top: 22%; right: 8%; background: var(--cyan);    animation: roadmap-float 8s ease-in-out infinite .5s; }
-.roadmap-particle.rp-4 { width: 6px;  height: 6px;  top: 78%; right: 14%;background: var(--teal);    animation: roadmap-float 6.5s ease-in-out infinite 1.5s; }
-.roadmap-particle.rp-5 { width: 4px;  height: 4px;  top: 46%; left: 2%;  background: var(--blue-mid);animation: roadmap-float 10s ease-in-out infinite .3s; }
-
-@keyframes roadmap-float {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50%      { transform: translateY(-14px) translateX(6px); }
-}
-
 .roadmap-canvas {
   position: relative;
   max-width: 1480px;
   margin: 0 auto;
   z-index: 1;
+
+  --orange:    #F0541B;
+--blue-mid:  #4A6FD6;
+--teal:      #2CB67D;
+--violet:    #8E6CF5;
+--line:   #E8E6E2;
+--white:  #FFFFFF;
+--muted:  #6B7280;
 }
 
 /* ── Timeline spine ───────────────────────────────────────── */
@@ -3233,7 +3166,6 @@ svg.stage-block-icon {
 
 /* quarter label */
 .roadmap-quarter {
-  font-family: 'Syne', sans-serif;
   font-size: .64rem;
   font-weight: 700;
   letter-spacing: .1em;
@@ -3259,20 +3191,12 @@ svg.stage-block-icon {
 
 .roadmap-icon svg { width: 21px; height: 21px; }
 
-.roadmap-step[data-status="released"] .roadmap-icon { background: rgba(44,182,125,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
-.roadmap-step[data-status="released"] .roadmap-icon svg { stroke: var(--teal); }
-
-.roadmap-step[data-status="progress"] .roadmap-icon { background: rgba(240,84,27,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
-.roadmap-step[data-status="progress"] .roadmap-icon svg { stroke: var(--orange); }
-
-.roadmap-step[data-status="planned"] .roadmap-icon { background: rgba(74,111,214,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
-.roadmap-step[data-status="planned"] .roadmap-icon svg { stroke: var(--blue-mid); }
-
-.roadmap-step[data-status="future"] .roadmap-icon { background: rgba(142,108,245,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
-.roadmap-step[data-status="future"] .roadmap-icon svg { stroke: var(--violet); }
+.roadmap-step[data-status="released"] .roadmap-icon { background: rgba(44,182,125,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); color: var(--teal);}
+.roadmap-step[data-status="progress"] .roadmap-icon { background: rgba(240,84,27,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6);color: var(--orange); }
+.roadmap-step[data-status="planned"] .roadmap-icon { background: rgba(74,111,214,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6);color: var(--blue-mid); }
+.roadmap-step[data-status="future"] .roadmap-icon { background: rgba(142,108,245,.10); box-shadow: inset 0 1px 0 rgba(255,255,255,.6);color: var(--violet); }
 
 .roadmap-card-title {
-  font-family: 'Syne', sans-serif;
   font-size: .95rem;
   font-weight: 700;
   color: var(--navy-deep);
@@ -3283,7 +3207,7 @@ svg.stage-block-icon {
 
 .roadmap-card-desc {
   font-size: .76rem;
-  line-height: 1.6;
+  line-height: 1.4;
   color: var(--muted);
 }
 
@@ -4969,68 +4893,8 @@ svg.stage-block-icon {
   margin: 0;
 }
 
-/* ──────────────────────────────────────────────────────────────────────────
-   SECTION 17: FUTURE ROADMAP
-   ────────────────────────────────────────────────────────────────────────── */
-.case-roadmap {
-  padding-bottom: 56px ;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
 
-.roadmap-timeline {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  position: relative;
-  padding-top: 24px;
-  margin-top:34px;
-}
 
-.roadmap-timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: #E5E5E5;
-  z-index: 1;
-}
-
-.timeline-step {
-  position: relative;
-  z-index: 2;
-}
-
-.step-marker {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  background: #005B96;
-  padding: 6px 12px;
-  border-radius: 100px;
-  width: max-content;
-  margin-bottom: 20px;
-  box-shadow: 0 0 0 4px #FFFFFF;
-}
-
-.timeline-step:nth-child(even) .step-marker {
-  background: #f0541b;
-}
-
-.step-content h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1B1B1B;
-  margin-bottom: 6px;
-}
-
-.step-content p {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #555555;
-  margin: 0;
-}
 
 /* ──────────────────────────────────────────────────────────────────────────
    SECTION 18: CONCLUSION
