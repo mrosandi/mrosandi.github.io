@@ -809,7 +809,6 @@ void main(){
   document.addEventListener(
     "touchmove",
     (e) => {
-      e.preventDefault();
       const t = e.touches[0];
       rawX = t.clientX;
       rawY = t.clientY;
@@ -820,7 +819,7 @@ void main(){
       prevX = rawX;
       prevY = rawY;
     },
-    { passive: false },
+    { passive: true },
   );
 })();
 
