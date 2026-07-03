@@ -1210,7 +1210,7 @@ footer small {
     overscroll-behavior: contain;
   }
   .dialog-case-body {
-    max-height: calc(100vh - 48px);
+    max-height: calc(100vh - 40px);
   }
   .dialog-case-body .close{
     top:12px;
@@ -1222,14 +1222,13 @@ footer small {
   }
   .dialog-case-content{
     height: auto;
-    max-height: calc(100vh - 180px);
+    max-height: calc(100vh - 40px);
     overflow-y: auto;
     overflow-x: hidden;
     pointer-events: auto;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
     overscroll-behavior: contain;
-    border:1px solid green;
   }
 }
 
