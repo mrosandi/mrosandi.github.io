@@ -1797,3 +1797,397 @@ chartObserver.observe(
   })();
  
 })();
+
+
+  /* ═══════════════════════════════════════════════════════
+   Portfolio Section Data + Render
+   ═══════════════════════════════════════════════════════ */
+   
+(function() {
+ 
+const PROJECTS = [
+  {
+    title: "Connective Community Platform",
+    cat: "SaaS", catClass: "pf-cat-saas",
+    img: "https://placehold.co/600x400/ffe8df/f0541b?text=Connective",
+    chips: [{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Prototype", cls:"chip-prototype" },{ label:"Research", cls:"chip-research" }],
+    overview: "Designed a scalable community platform that streamlined communication, engagement, and monetization while improving the overall member experience.",
+    info: { client:"Connective Network", industry:"SaaS / Community", created:"2024", role:"Lead UX Designer" },
+    summary: "End-to-end redesign of a community management platform serving 48,000+ members across 190 countries.",
+    star: {
+      s: "The client managed multiple disconnected digital platforms that resulted in fragmented user experiences, duplicated administrative work, and inconsistent member engagement across their growing community ecosystem.",
+      t: ["Improve usability across all touchpoints","Simplify community management workflows","Increase member engagement metrics","Create a scalable design system"],
+      a: ["Conducted stakeholder interviews","Performed comprehensive UX research","Competitor benchmarking across 8 platforms","Created detailed user personas","Designed end-to-end user flows","Built wireframes and high-fidelity UI","Developed interactive prototypes","Conducted usability testing with 24 users","Iterated based on structured user feedback"],
+      results: [{ num:"32%", label:"Increase in task completion rate" },{ num:"45%", label:"Reduction in onboarding time" },{ num:"4.8/5", label:"User satisfaction score" },{ num:"60%", label:"Reduction in admin workload" }]
+    }
+  },
+  {
+    title: "Smart City Services Portal",
+    cat: "GovTech", catClass: "pf-cat-govtech",
+    img: "https://placehold.co/600x400/e8eeff/4a6fd6?text=Smart+City",
+    chips: [{ label:"Research", cls:"chip-research" },{ label:"Wireframe", cls:"chip-wireframe" },{ label:"UI/UX Design", cls:"chip-uiux" }],
+    overview: "Modernized a government digital portal serving 2M+ citizens, reducing service request processing time and improving accessibility compliance.",
+    info: { client:"City Government Agency", industry:"GovTech / Public Sector", created:"2023", role:"UX Strategist & Designer" },
+    summary: "Digital transformation of citizen services from 14 fragmented portals into a single unified experience.",
+    star: {
+      s: "The city agency operated 14 separate digital portals with inconsistent UI patterns, causing confusion for citizens and inefficiency for government staff managing service requests.",
+      t: ["Unify 14 portals into a single platform","Meet WCAG 2.1 AA accessibility standards","Reduce citizen service request time","Modernize government brand identity"],
+      a: ["Stakeholder workshops with 6 departments","Citizen feedback analysis (n=340)","Accessibility audit of all existing portals","Information architecture restructuring","Created accessibility-first design patterns","Built responsive prototype system","Usability testing with diverse user groups","Government brand identity alignment"],
+      results: [{ num:"58%", label:"Faster service request completion" },{ num:"AA", label:"WCAG 2.1 compliance achieved" },{ num:"2M+", label:"Citizens served monthly" },{ num:"89%", label:"Citizen satisfaction increase" }]
+    }
+  },
+  {
+    title: "EduVerse Learning Hub",
+    cat: "EdTech", catClass: "pf-cat-edtech",
+    img: "https://placehold.co/600x400/ede8ff/8e6cf5?text=EduVerse",
+    chips: [{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Prototype", cls:"chip-prototype" },{ label:"Problem Solving", cls:"chip-problem" }],
+    overview: "Designed an immersive learning platform connecting 80,000 students with expert educators through live sessions, courses, and community-driven content.",
+    info: { client:"EduVerse Inc.", industry:"EdTech / Online Learning", created:"2024", role:"Product Designer" },
+    summary: "Holistic EdTech platform design focused on engagement, retention, and measurable learning outcomes.",
+    star: {
+      s: "An established EdTech startup struggled with high course dropout rates (68%) and poor mobile experience, threatening their growth targets and investor confidence.",
+      t: ["Reduce course dropout rate significantly","Improve mobile learning experience","Increase course completion engagement","Design gamification reward system"],
+      a: ["Learning behavior research with 50+ students","Competitive analysis of top EdTech platforms","Student journey mapping and pain point analysis","Gamification framework design","Mobile-first responsive UI redesign","Interactive prototype for A/B testing","Usability testing across 3 age groups","Iterative design sprints over 8 weeks"],
+      results: [{ num:"41%", label:"Reduction in course dropout rate" },{ num:"3.2x", label:"Increase in daily active users" },{ num:"4.9/5", label:"Student satisfaction rating" },{ num:"68%", label:"Course completion improvement" }]
+    }
+  },
+  {
+    title: "Foodly Ordering Platform",
+    cat: "Food & Beverage", catClass: "pf-cat-food",
+    img: "https://placehold.co/600x400/e0f7fb/25b6d2?text=Foodly",
+    chips: [{ label:"Re-design", cls:"chip-redesign" },{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Prototype", cls:"chip-prototype" }],
+    overview: "Redesigned the end-to-end ordering experience for a multi-brand cloud kitchen, increasing order conversion and reducing cart abandonment significantly.",
+    info: { client:"Foodly Cloud Kitchen", industry:"Food & Beverage / Delivery", created:"2023", role:"UX Designer" },
+    summary: "Complete UX overhaul of a food delivery super-app serving 12 restaurant brands from a single interface.",
+    star: {
+      s: "Foodly's ordering platform suffered from a 72% cart abandonment rate and confusing multi-brand navigation, causing significant revenue loss and poor customer reviews.",
+      t: ["Reduce cart abandonment from 72% to below 30%","Simplify multi-brand ordering flow","Improve checkout experience","Optimize for impulse and repeat ordering"],
+      a: ["Customer journey analysis of 500+ orders","Heatmap and session recording analysis","Competitor UX benchmarking","Cart abandonment root cause research","Simplified 5-step ordering flow design","One-tap reorder feature design","Personalization algorithm integration","A/B tested two checkout flows","Post-launch performance monitoring"],
+      results: [{ num:"51%", label:"Cart abandonment reduction" },{ num:"28%", label:"Increase in average order value" },{ num:"4.7/5", label:"App store rating improvement" },{ num:"2.4x", label:"Repeat order rate increase" }]
+    }
+  },
+  {
+    title: "TravelGo Booking System",
+    cat: "Travel & Transportation", catClass: "pf-cat-travel",
+    img: "https://placehold.co/600x400/e8edf7/1d2f6f?text=TravelGo",
+    chips: [{ label:"Research", cls:"chip-research" },{ label:"Wireframe", cls:"chip-wireframe" },{ label:"HTML/CSS", cls:"chip-htmlcss" }],
+    overview: "Designed a unified multi-modal travel booking platform combining flights, trains, hotels and transfers into a seamless journey planner.",
+    info: { client:"TravelGo Solutions", industry:"Travel & Transportation", created:"2024", role:"Senior UI/UX Designer" },
+    summary: "Unified travel booking experience integrating 4 transport modes and accommodation in a single itinerary-first flow.",
+    star: {
+      s: "Travelers using TravelGo faced fragmented booking flows requiring 4 separate platforms to plan a complete journey, leading to high drop-off rates and poor NPS scores.",
+      t: ["Create a unified multi-modal booking flow","Design intuitive itinerary builder","Improve cross-sell opportunities","Reduce booking completion time by 50%"],
+      a: ["Interviewed 40 frequent travelers","Booking flow data analysis across 3 platforms","Information architecture redesign","Itinerary-first UI concept development","High-fidelity interactive prototype","Cross-device responsive design system","Usability testing in 4 cities","Developer handoff documentation"],
+      results: [{ num:"47%", label:"Faster booking completion" },{ num:"34%", label:"Increase in cross-sell revenue" },{ num:"NPS +42", label:"Net Promoter Score improvement" },{ num:"81%", label:"Single-session booking success" }]
+    }
+  },
+  {
+    title: "Marketing Automation Suite",
+    cat: "Digital Marketing & Sales", catClass: "pf-cat-marketing",
+    img: "https://placehold.co/600x400/fff3e0/d4840a?text=Marketing+Suite",
+    chips: [{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Problem Solving", cls:"chip-problem" },{ label:"Prototype", cls:"chip-prototype" }],
+    overview: "Redesigned a B2B marketing automation dashboard, simplifying complex campaign management and surfacing actionable insights for growth teams.",
+    info: { client:"GrowthStack Inc.", industry:"Digital Marketing / SaaS", created:"2023", role:"Product UX Designer" },
+    summary: "Enterprise marketing platform redesign focused on reducing cognitive load for non-technical marketing teams.",
+    star: {
+      s: "GrowthStack's power users were abandoning complex features because the UI exposed too much technical complexity, limiting adoption among marketing teams without development backgrounds.",
+      t: ["Simplify campaign builder interface","Surface key insights from data complexity","Design progressive disclosure patterns","Increase feature adoption among non-technical users"],
+      a: ["Cognitive walkthrough with 15 marketing managers","Feature usage analytics deep-dive","Progressive disclosure framework design","Simplified campaign builder redesign","Dashboard hierarchy restructuring","Contextual help system design","Beta testing with 30 marketing teams","Two sprint iterations post-beta feedback"],
+      results: [{ num:"63%", label:"Increase in feature adoption" },{ num:"38%", label:"Reduction in support tickets" },{ num:"4.6/5", label:"User satisfaction score" },{ num:"52%", label:"Faster campaign setup time" }]
+    }
+  },
+  {
+    title: "Wellness Lifestyle App",
+    cat: "Lifestyle", catClass: "pf-cat-lifestyle",
+    img: "https://placehold.co/600x400/e8faf3/2cb67d?text=Wellness+App",
+    chips: [{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Research", cls:"chip-research" },{ label:"Wireframe", cls:"chip-wireframe" }],
+    overview: "Created an holistic wellness companion app combining mental health tracking, guided meditation, nutrition logging, and fitness goal setting.",
+    info: { client:"WellPath Technologies", industry:"Health & Lifestyle", created:"2024", role:"UX Designer & Researcher" },
+    summary: "All-in-one wellness app designed around habit formation psychology and personalized health journeys.",
+    star: {
+      s: "WellPath's users reported app fatigue from managing 5–7 separate wellness apps, losing momentum on health goals due to fragmented data and inconsistent habit tracking.",
+      t: ["Unify wellness tracking into one experience","Design habit-forming daily routines","Create personalized wellness journeys","Improve 30-day retention significantly"],
+      a: ["Behavioral psychology research review","User diary studies over 3 weeks","Habit loop design framework application","Personalization engine UX design","Onboarding flow optimization","Push notification strategy design","A/B tested 3 home screen layouts","Accessibility review for all interactions"],
+      results: [{ num:"74%", label:"30-day user retention improvement" },{ num:"2.1x", label:"Daily active usage increase" },{ num:"4.9/5", label:"App store health category rating" },{ num:"89%", label:"Users completing 7-day streaks" }]
+    }
+  },
+  {
+    title: "Government Digital Portal",
+    cat: "GovTech", catClass: "pf-cat-govtech",
+    img: "https://placehold.co/600x400/dde8ff/4a6fd6?text=Gov+Portal",
+    chips: [{ label:"Re-design", cls:"chip-redesign" },{ label:"Wireframe", cls:"chip-wireframe" },{ label:"HTML/CSS", cls:"chip-htmlcss" }],
+    overview: "Led the accessibility-first redesign of a national e-government portal, improving digital inclusion and service discoverability for all citizens.",
+    info: { client:"National Digital Agency", industry:"Government / Public Services", created:"2023", role:"Lead Accessibility Designer" },
+    summary: "National-scale portal redesign serving diverse citizens including elderly and disabled users across rural and urban areas.",
+    star: {
+      s: "The national e-government portal scored 31 on the government digital accessibility index, excluding elderly users and persons with disabilities from critical digital public services.",
+      t: ["Achieve WCAG 2.1 AAA compliance","Improve service discoverability by 60%","Design inclusive interaction patterns","Reduce call center dependency for services"],
+      a: ["Accessibility audit across 200+ pages","User testing with elderly and disabled cohorts","Screen reader compatibility redesign","High-contrast design system creation","Simplified navigation taxonomy","Plain language content guidelines","Government stakeholder co-design sessions","Developer accessibility documentation"],
+      results: [{ num:"AAA", label:"WCAG 2.1 compliance achieved" },{ num:"67%", label:"Reduction in call center contacts" },{ num:"91", label:"Government accessibility index score" },{ num:"3.8x", label:"Service completion rate increase" }]
+    }
+  },
+  {
+    title: "Sales Performance Dashboard",
+    cat: "Digital Marketing & Sales", catClass: "pf-cat-marketing",
+    img: "https://placehold.co/600x400/fff8e0/d4840a?text=Sales+Dashboard",
+    chips: [{ label:"UI/UX Design", cls:"chip-uiux" },{ label:"Prototype", cls:"chip-prototype" },{ label:"Problem Solving", cls:"chip-problem" }],
+    overview: "Designed an intelligent sales analytics dashboard giving revenue teams real-time pipeline visibility, forecasting confidence, and actionable deal insights.",
+    info: { client:"RevenueIQ Platform", industry:"SaaS / Sales Technology", created:"2024", role:"Product UI/UX Designer" },
+    summary: "Enterprise sales command center designed for VP-level decision making and frontline rep daily workflow.",
+    star: {
+      s: "RevenueIQ's sales teams relied on static weekly spreadsheets for pipeline reporting, causing forecasting inaccuracies up to 34% and delayed decision-making at executive level.",
+      t: ["Design real-time pipeline visibility dashboard","Surface actionable deal risk signals","Create executive and rep-level view modes","Enable forecast confidence scoring"],
+      a: ["Shadowed 12 sales reps over 5 days","Interviewed 6 VP Sales stakeholders","Data visualization best practice research","Dual-persona dashboard architecture design","Real-time data component library creation","Deal risk signal UX design","Executive summary view wireframing","Interactive prototype for investor demo","Iterative testing with sales management team"],
+      results: [{ num:"34%", label:"Forecasting accuracy improvement" },{ num:"22 min", label:"Saved per rep per day" },{ num:"4.7/5", label:"Sales team satisfaction score" },{ num:"$2.4M", label:"Attributed pipeline recovered" }]
+    }
+  }
+];
+ 
+const COLS = { desktop: 3, tablet: 2, mobile: 1 };
+ 
+const grid = document.getElementById("portfolio-grid");
+if (!grid) return;
+ 
+/* state */
+let openIdx = -1;
+let openRow = null;
+ 
+function getColCount() {
+  const w = window.innerWidth;
+  if (w > 1100) return 3;
+  if (w > 720)  return 2;
+  return 1;
+}
+ 
+function buildInfoRows(info) {
+  const defs = [
+    { icon:'<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>', key:"Client",   val: info.client   },
+    { icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>', key:"Industry", val: info.industry },
+    { icon:'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>', key:"Created", val: info.created },
+    { icon:'<path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5H15.5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8H3.5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11H8.5c.83 0 1.5-.67 1.5-1.5z"/><path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>', key:"Role", val: info.role }
+  ];
+  return defs.map(d => `
+    <div class="pf-detail-info-row">
+      <div class="pf-detail-info-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${d.icon}</svg>
+      </div>
+      <div><div class="pf-detail-info-key">${d.key}</div><div class="pf-detail-info-val">${d.val}</div></div>
+    </div>`).join('');
+}
+ 
+function buildCard(p, idx) {
+  const chipsHTML = p.chips.map(c =>
+    `<span class="pf-chip ${c.cls}">${c.label}</span>`).join('');
+  return `
+  <div class="pf-card" data-idx="${idx}">
+    <div class="pf-img-wrap">
+      <img class="pf-img" src="${p.img}" alt="${p.title}" loading="lazy"/>
+      <div class="pf-category-badge ${p.catClass}">${p.cat}</div>
+      <div class="pf-overlay">
+        <div class="pf-overlay-label">Project Overview</div>
+        <div class="pf-overlay-desc">${p.overview}</div>
+        <div class="pf-overlay-arrow">View details
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="pf-body">
+      <div class="pf-title">${p.title}</div>
+      <div class="pf-chips">${chipsHTML}</div>
+    </div>
+  </div>`;
+}
+ 
+function buildDetail(p, idx) {
+ 
+  const actionItems = p.star.a.map(a => `
+    <div class="pf-action-item">
+      <div class="pf-action-text">${a},</div>
+    </div>`).join('');
+ 
+  const kpis = p.star.results.map(r => `
+    <div class="pf-kpi">
+      <div class="pf-kpi-num">${r.num}</div>
+      <div class="pf-kpi-label">${r.label}</div>
+    </div>`).join('');
+ 
+  return `
+  <div class="pf-detail-row" data-for="${idx}">
+    <div class="pf-detail-inner">
+      <button class="pf-detail-close" data-close="${idx}" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+ 
+      <div class="pf-detail-left">
+        <img class="pf-detail-preview" src="${p.img}" alt="${p.title}"/>
+        <div class="pf-detail-info">
+          ${buildInfoRows(p.info)}
+          <div class="pf-detail-info-row">
+            <div class="pf-detail-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div><div class="pf-detail-info-key">Summary</div><div class="pf-detail-info-val">${p.summary}</div></div>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="pf-detail-right">
+        <div class="pf-star-blocks">
+ 
+          <div class="pf-star-block star-s">
+            <div class="pf-star-head">
+              <div class="pf-star-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+              <div><div class="pf-star-label">Situation</div><div class="pf-star-sublabel">Business context &amp; challenge</div></div>
+            </div>
+            <p class="pf-star-text">${p.star.s}</p>
+          </div>
+ 
+          <div class="pf-star-block star-t">
+            <div class="pf-star-head">
+              <div class="pf-star-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <div><div class="pf-star-label">Task</div><div class="pf-star-sublabel">Objectives &amp; responsibilities</div></div>
+            </div>
+            <p class="pf-star-text">${p.star.t}</p>
+          </div>
+ 
+          <div class="pf-star-block star-a">
+            <div class="pf-star-head">
+              <div class="pf-star-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+              <div><div class="pf-star-label">Action</div><div class="pf-star-sublabel">Design process &amp; contributions</div></div>
+            </div>
+            <div class="pf-action-list">${actionItems}</div>
+          </div>
+ 
+          <div class="pf-star-block star-r">
+            <div class="pf-star-head">
+              <div class="pf-star-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <div><div class="pf-star-label">Result</div><div class="pf-star-sublabel">Measurable outcomes</div></div>
+            </div>
+            <div class="pf-result-grid">${kpis}</div>
+          </div>
+ 
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+ 
+/* render all 9 cards + detail placeholders */
+function renderGrid() {
+  const cols = getColCount();
+  const fragment = document.createDocumentFragment();
+ 
+  PROJECTS.forEach((p, idx) => {
+    const cardDiv = document.createElement('div');
+    cardDiv.innerHTML = buildCard(p, idx);
+    const card = cardDiv.firstElementChild;
+    grid.appendChild(card);
+ 
+    /* After every row-end (or for all in 1-col), insert detail row placeholder */
+    const isRowEnd = (idx + 1) % cols === 0 || idx === PROJECTS.length - 1;
+    if (isRowEnd) {
+      const rowIdx = Math.floor(idx / cols);
+      const startIdx = rowIdx * cols;
+      const endIdx = Math.min(startIdx + cols, PROJECTS.length);
+ 
+      /* Detail rows for this row group — one per card in group,
+         but only one visible at a time */
+      for (let i = startIdx; i < endIdx; i++) {
+        const det = document.createElement('div');
+        det.innerHTML = buildDetail(PROJECTS[i], i);
+        const detRow = det.firstElementChild;
+        detRow.style.gridColumn = `1 / -1`;
+        grid.appendChild(detRow);
+      }
+    }
+  });
+}
+ 
+function closeDetail(idx) {
+  const card = grid.querySelector(`.pf-card[data-idx="${idx}"]`);
+  const det  = grid.querySelector(`.pf-detail-row[data-for="${idx}"]`);
+  if (card) card.classList.remove('is-open');
+  if (det) {
+    det.classList.remove('is-open');
+    /* hide from layout after transition ends (560ms matches transition) */
+    setTimeout(() => { det.style.display = 'none'; }, 560);
+  }
+}
+ 
+function openDetail(idx) {
+  /* close any open */
+  if (openIdx >= 0) {
+    closeDetail(openIdx);
+  }
+ 
+  if (openIdx === idx) { openIdx = -1; return; }
+ 
+  openIdx = idx;
+  const card = grid.querySelector(`.pf-card[data-idx="${idx}"]`);
+  const det  = grid.querySelector(`.pf-detail-row[data-for="${idx}"]`);
+  if (card) card.classList.add('is-open');
+  if (det) {
+    /* set display:block first so transition from max-height:0 is visible */
+    det.style.display = 'block';
+    /* force reflow before adding class so transition fires */
+    void det.offsetHeight;
+    det.classList.add('is-open');
+    setTimeout(() => {
+      det.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 120);
+  }
+}
+ 
+renderGrid();
+ 
+/* event delegation */
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.pf-card');
+  const closeBtn = e.target.closest('.pf-detail-close');
+ 
+  if (closeBtn) {
+    const idx = parseInt(closeBtn.dataset.close);
+    closeDetail(idx);
+    openIdx = -1;
+    return;
+  }
+ 
+  if (card) {
+    const idx = parseInt(card.dataset.idx);
+    openDetail(idx);
+  }
+});
+ 
+/* sequential reveal on scroll */
+const cards = Array.from(grid.querySelectorAll('.pf-card'));
+cards.forEach((el, i) => { el.style.transitionDelay = (i * 0.07) + 's'; });
+ 
+const pfObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      cards.forEach(el => el.classList.add('is-visible'));
+      pfObserver.disconnect();
+    }
+  });
+}, { threshold: 0.1 });
+pfObserver.observe(grid);
+ 
+if (!('IntersectionObserver' in window)) cards.forEach(el => el.classList.add('is-visible'));
+ 
+/* re-render on significant resize for col count change */
+let lastCols = getColCount(), resizeT2;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeT2);
+  resizeT2 = setTimeout(() => {
+    const c = getColCount();
+    if (c !== lastCols) {
+      lastCols = c;
+      grid.innerHTML = '';
+      openIdx = -1;
+      renderGrid();
+      cards.forEach(el => el.classList.add('is-visible'));
+    }
+  }, 250);
+});
+ 
+})();
