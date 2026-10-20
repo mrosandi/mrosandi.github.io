@@ -1,5 +1,41 @@
 "use strict";
 
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function isModalDialogOpen() {
+  if (prefersReducedMotion.matches) return true;
+
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.getElementById(hash.slice(1));
+    if (target && target.classList.contains("overlay")) {
+      return true;
+    }
+  }
+
+  return !!document.querySelector(
+    ".overlay.is-open, .overlay.open, .overlay.active, .overlay[aria-hidden='false']",
+  );
+}
+
+window.__backgroundEffects = {};
+
+function resumeBackgroundEffects() {
+  Object.values(window.__backgroundEffects).forEach((resume) => {
+    if (typeof resume === "function") resume();
+  });
+}
+
+function syncBackgroundEffects() {
+  const shouldPause = isModalDialogOpen();
+  document.body.classList.toggle("effects-paused", shouldPause);
+  if (!shouldPause) resumeBackgroundEffects();
+  return shouldPause;
+}
+
+window.addEventListener("hashchange", syncBackgroundEffects);
+window.addEventListener("resize", syncBackgroundEffects);
+
 /* ═══════════════════════════════════════════════════════════
    1.  ANIMATED GRAIN / NOISE BACKGROUND  (#noise-canvas)
    — Per-frame white noise (film grain) over a dark base
@@ -8,39 +44,52 @@
    ═══════════════════════════════════════════════════════════ */
 (function initNoiseBg() {
   const canvas = document.getElementById("noise-canvas");
+  if (!canvas) return;
+
+  let rafId = 0;
+  function shouldPause() {
+    return prefersReducedMotion.matches || isModalDialogOpen();
+  }
 
   /* Try WebGL for high-perf grain; fall back to 2D Canvas */
   const gl =
     canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
 
   if (!gl) {
-    /* ── 2D Canvas fallback ── */
     const ctx = canvas.getContext("2d");
     function resize2d() {
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
+      canvas.width = Math.min(innerWidth, 1200);
+      canvas.height = Math.min(innerHeight, 900);
     }
     resize2d();
     window.addEventListener("resize", resize2d);
-    (function draw2d() {
+
+    function draw2d() {
+      if (shouldPause()) {
+        rafId = 0;
+        return;
+      }
+
       const w = canvas.width,
         h = canvas.height;
       const img = ctx.createImageData(w, h);
       const d = img.data;
       for (let i = 0; i < d.length; i += 4) {
-        const g = (Math.random() * 38) | 0;
+        const g = (Math.random() * 22) | 0;
         d[i] = d[i + 1] = d[i + 2] = g;
         d[i + 3] = 255;
       }
       ctx.putImageData(img, 0, 0);
-      requestAnimationFrame(draw2d);
-    })();
+      rafId = requestAnimationFrame(draw2d);
+    }
+
+    if (!shouldPause()) {
+      rafId = requestAnimationFrame(draw2d);
+    }
     return;
   }
 
-  /* ── WebGL path ── */
   function resize() {
-    /* render at half-res for perf — CSS stretches it */
     canvas.width = Math.ceil(innerWidth / 2);
     canvas.height = Math.ceil(innerHeight / 2);
     gl.viewport(0, 0, canvas.width, canvas.height);
@@ -49,39 +98,23 @@
   window.addEventListener("resize", resize);
 
   const VS = `attribute vec2 a_pos; void main(){ gl_Position=vec4(a_pos,0.,1.); }`;
-
-  /* Grain shader:
-     - hash21: fast per-pixel random seeded by (uv + frame offset)
-     - base: near-black (#0b0b0e) with a touch of cool blue
-     - grain: additive white noise, intensity ~12% max
-     - vignette: smooth radial darkening at edges
-     - Each frame u_seed changes → grain never repeats */
   const FS = `
 precision highp float;
 uniform float u_seed;
 uniform vec2  u_res;
-
 float hash21(vec2 p){
   p=fract(p*vec2(234.34,435.345)+u_seed);
   p+=dot(p,p+34.23);
   return fract(p.x*p.y);
 }
-
 void main(){
   vec2 uv = gl_FragCoord.xy / u_res;
-
-  /* ── film grain: white noise, mild intensity ── */
   float g = hash21(gl_FragCoord.xy);
-  /* remap to [-1,1] then scale — signed grain looks more filmic */
-  float grain = (g - 0.5) * 0.13;
-
+  float grain = (g - 0.5) * 0.09;
   vec3 col = vec3(grain);
-
-  /* ── subtle vignette ── */
   vec2 vig = uv * 2.0 - 1.0;
   float v = 1.0 - dot(vig, vig) * 0.42;
   col *= clamp(v, 0.0, 1.0);
-
   col = clamp(col, 0.0, 1.0);
   gl_FragColor = vec4(col, col.r);
 }`;
@@ -92,6 +125,7 @@ void main(){
     gl.compileShader(s);
     return s;
   }
+
   const prog = gl.createProgram();
   gl.attachShader(prog, makeShader(gl.VERTEX_SHADER, VS));
   gl.attachShader(prog, makeShader(gl.FRAGMENT_SHADER, FS));
@@ -112,13 +146,25 @@ void main(){
   const uSeed = gl.getUniformLocation(prog, "u_seed");
   const uRes = gl.getUniformLocation(prog, "u_res");
 
-  (function draw() {
-    /* unique seed every frame → grain flickers */
+  function draw() {
+    if (shouldPause()) {
+      rafId = 0;
+      return;
+    }
+
     gl.uniform1f(uSeed, Math.random() * 999.0);
     gl.uniform2f(uRes, canvas.width, canvas.height);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(draw);
-  })();
+    rafId = requestAnimationFrame(draw);
+  }
+
+  function startNoiseLoop() {
+    if (shouldPause()) return;
+    if (!rafId) rafId = requestAnimationFrame(draw);
+  }
+
+  window.__backgroundEffects.noise = startNoiseLoop;
+  startNoiseLoop();
 })();
 
 /* ═══════════════════════════════════════════════════════════
@@ -127,6 +173,12 @@ void main(){
    ═══════════════════════════════════════════════════════════ */
 (function initFluid() {
   const canvas = document.getElementById("fluid-canvas");
+  if (!canvas) return;
+
+  function shouldPause() {
+    return prefersReducedMotion.matches || isModalDialogOpen();
+  }
+
   canvas.width = canvas.clientWidth;
   canvas.height = canvas.clientHeight;
 
@@ -743,7 +795,14 @@ void main(){
   multipleSplats(parseInt(Math.random() * 12) + 6);
 
   let last = 0;
-  (function update(now) {
+  let fluidRafId = 0;
+
+  function tick(now) {
+    if (shouldPause()) {
+      fluidRafId = 0;
+      return;
+    }
+
     const dt = Math.min((now - last) / 1000, 0.016);
     last = now;
     if (
@@ -760,10 +819,18 @@ void main(){
         splat(p.x, p.y, p.dx, p.dy, p.color);
         p.moved = false;
       }
-    step(0.016);
+    step(Math.min(dt || 0.016, 0.016));
     render(null);
-    requestAnimationFrame(update);
-  })(0);
+    fluidRafId = requestAnimationFrame(tick);
+  }
+
+  function startFluidLoop() {
+    if (shouldPause()) return;
+    if (!fluidRafId) fluidRafId = requestAnimationFrame(tick);
+  }
+
+  window.__backgroundEffects.fluid = startFluidLoop;
+  startFluidLoop();
 
   window.addEventListener("keydown", (e) => {
     if (e.key === " ") splatStack.push(parseInt(Math.random() * 12) + 5);
@@ -776,17 +843,21 @@ void main(){
 (function initCursor() {
   const dot = document.getElementById("c-dot");
   const glWrap = document.getElementById("gl-wrap");
+  if (!dot) return;
   let rawX = -200,
     rawY = -200,
     prevX = -200,
     prevY = -200;
 
   function inGl(x, y) {
+    if (!glWrap) return false;
     const r = glWrap.getBoundingClientRect();
     return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
   }
 
   document.addEventListener("mousemove", (e) => {
+    if (isModalDialogOpen()) return;
+
     const dx = e.clientX - prevX,
       dy = e.clientY - prevY;
     prevX = rawX;
@@ -800,7 +871,6 @@ void main(){
       ? dot.classList.add("zone-gl")
       : dot.classList.remove("zone-gl");
 
-    /* forward to fluid only when outside gl-wrap */
     if (!inGl(rawX, rawY) && window._fluidSplat) {
       window._fluidSplat(rawX, rawY, dx, dy);
     }
@@ -809,7 +879,7 @@ void main(){
   document.addEventListener(
     "touchmove",
     (e) => {
-      if (e.target.closest('.overlay-scroll')) return;
+      if (isModalDialogOpen() || e.target.closest(".overlay-scroll")) return;
       const t = e.touches[0];
       rawX = t.clientX;
       rawY = t.clientY;
@@ -885,8 +955,9 @@ void main(){
     canvas,
     antialias: true,
     alpha: true,
+    powerPreference: "low-power",
   });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
   renderer.setSize(w, h);
   renderer.setClearColor(0x000000, 0);
 
@@ -960,8 +1031,18 @@ void main(){
     return a + (b - a) * t;
   }
   const clock = new THREE.Clock();
-  (function animate() {
-    requestAnimationFrame(animate);
+  let revealRafId = 0;
+
+  function shouldPause() {
+    return prefersReducedMotion.matches || isModalDialogOpen();
+  }
+
+  function animate() {
+    if (shouldPause()) {
+      revealRafId = 0;
+      return;
+    }
+
     const dt = clock.getDelta(),
       k = 1 - Math.exp(-dt * 7);
     px = cx;
@@ -972,7 +1053,16 @@ void main(){
     uniforms.uMouse.value.set(cx, cy);
     uniforms.uTime.value = clock.getElapsedTime();
     renderer.render(scene, camera);
-  })();
+    revealRafId = requestAnimationFrame(animate);
+  }
+
+  function startRevealLoop() {
+    if (shouldPause()) return;
+    if (!revealRafId) revealRafId = requestAnimationFrame(animate);
+  }
+
+  window.__backgroundEffects.reveal = startRevealLoop;
+  startRevealLoop();
 
   window.addEventListener("resize", () => {
     const { w: nw, h: nh } = sz();
