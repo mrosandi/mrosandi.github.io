@@ -1063,6 +1063,7 @@ footer small {
   .iam,
   .text {
     font-size: 1.6rem;
+    min-height: 29px;
   }
 
   header h1 {
@@ -4850,6 +4851,7 @@ svg.flow-connectors {
   .stat-num { font-size: 1.5rem; }
   .feature-card { padding: 1.6rem; }
   .feature-card-cta { flex-direction: column; align-items: flex-start; }
+  .section-plexus{padding: 0;}
 }
  
 @media (prefers-reduced-motion: reduce) {

@@ -960,7 +960,7 @@ void main(){
     const isMobile = window.innerWidth <= 768;
     let s;
     if (isMobile) {
-      s = Math.round(window.innerHeight * 0.5);
+      s = Math.min(Math.round(window.innerHeight * 0.5), window.innerWidth);
     } else {
       s = Math.min(Math.round(window.innerWidth * 0.5), 860);
     }
@@ -1043,7 +1043,7 @@ void main(){
       mx = lx;
       my = ly;
     },
-    { passive: false },
+    { passive: true },
   );
 
   function lerp(a, b, t) {
@@ -2053,6 +2053,13 @@ function syncLazyDialogs() {
 window.addEventListener("hashchange", syncLazyDialogs);
 syncLazyDialogs();
 
+loadExternalScript(
+  "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+  "THREE",
+)
+  .then(() => initReveal())
+  .catch((error) => console.error("Liquid reveal unavailable:", error));
+
 const isCoarsePointer = matchMedia("(pointer: coarse)").matches;
 const shouldStartInteractiveCanvases = !prefersReducedMotion.matches;
 
@@ -2061,6 +2068,7 @@ if (shouldStartInteractiveCanvases) {
 
   function startInteractiveCanvases(event) {
     if (backgroundCanvasesStarted || isModalDialogOpen()) return;
+    if (!(event.target instanceof Element)) return;
     if (
       isCoarsePointer &&
       event.target.closest("a, button, input, textarea, .overlay")
@@ -2077,7 +2085,6 @@ if (shouldStartInteractiveCanvases) {
       "THREE",
     )
       .then(() => {
-        initReveal();
         setTimeout(initFluid, 250);
       })
       .catch((error) => console.error("Background effects unavailable:", error));
