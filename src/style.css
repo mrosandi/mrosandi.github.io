@@ -47,6 +47,26 @@ body {
   opacity: 1;
 }
 
+@media (max-width: 768px), (pointer: coarse) {
+  #noise-canvas {
+    display: none;
+  }
+
+  #noise-bg::after {
+    position: absolute;
+    inset: 0;
+    background: url("./assets/noise-tile.svg") repeat;
+    background-size: 128px 128px;
+    content: "";
+    opacity: 0.18;
+    pointer-events: none;
+  }
+
+  #fluid-canvas {
+    z-index: 1;
+  }
+}
+
 /* ─── WebGL reveal — 45vw square (reduced 10%), max 760px, bottom center ──────── */
 #gl-wrap {
   position: fixed;
@@ -942,8 +962,8 @@ footer small {
     left: 0;
     right: 0;
     margin: auto;
-    width: 50vh;
-    height: 50vh;
+    width: min(50vh, 100vw);
+    height: min(50vh, 100vw);
     transform: translateX(0);
     bottom: 0;
   }

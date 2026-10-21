@@ -3,6 +3,7 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function isModalDialogOpen() {
+  if (document.hidden) return true;
   if (prefersReducedMotion.matches) return true;
 
   const hash = window.location.hash;
@@ -35,6 +36,7 @@ function syncBackgroundEffects() {
 
 window.addEventListener("hashchange", syncBackgroundEffects);
 window.addEventListener("resize", syncBackgroundEffects);
+document.addEventListener("visibilitychange", syncBackgroundEffects);
 
 /* ═══════════════════════════════════════════════════════════
    1.  ANIMATED GRAIN / NOISE BACKGROUND  (#noise-canvas)
@@ -44,7 +46,7 @@ window.addEventListener("resize", syncBackgroundEffects);
    ═══════════════════════════════════════════════════════════ */
 (function initNoiseBg() {
   const canvas = document.getElementById("noise-canvas");
-  if (!canvas) return;
+  if (!canvas || matchMedia("(max-width: 768px), (pointer: coarse)").matches) return;
 
   let rafId = 0;
   function shouldPause() {
@@ -58,8 +60,8 @@ window.addEventListener("resize", syncBackgroundEffects);
   if (!gl) {
     const ctx = canvas.getContext("2d");
     function resize2d() {
-      canvas.width = Math.min(innerWidth, 1200);
-      canvas.height = Math.min(innerHeight, 900);
+      canvas.width = Math.min(innerWidth, 960);
+      canvas.height = Math.min(innerHeight, 640);
     }
     resize2d();
     window.addEventListener("resize", resize2d);
@@ -146,11 +148,18 @@ void main(){
   const uSeed = gl.getUniformLocation(prog, "u_seed");
   const uRes = gl.getUniformLocation(prog, "u_res");
 
-  function draw() {
+  let lastDraw = 0;
+  function draw(timestamp) {
     if (shouldPause()) {
       rafId = 0;
       return;
     }
+
+    if (timestamp - lastDraw < 1000 / 30) {
+      rafId = requestAnimationFrame(draw);
+      return;
+    }
+    lastDraw = timestamp;
 
     gl.uniform1f(uSeed, Math.random() * 999.0);
     gl.uniform2f(uRes, canvas.width, canvas.height);
@@ -171,9 +180,11 @@ void main(){
    2.  FLUID SIMULATION  (#fluid-canvas)
    — Navier-Stokes velocity + dye, reacts to cursor movement
    ═══════════════════════════════════════════════════════════ */
-(function initFluid() {
+function initFluid() {
   const canvas = document.getElementById("fluid-canvas");
   if (!canvas) return;
+
+  const isMobile = matchMedia("(max-width: 768px), (pointer: coarse)").matches;
 
   function shouldPause() {
     return prefersReducedMotion.matches || isModalDialogOpen();
@@ -183,17 +194,17 @@ void main(){
   canvas.height = canvas.clientHeight;
 
   const config = {
-    SIM_RESOLUTION: 128,
-    DYE_RESOLUTION: 512,
+    SIM_RESOLUTION: isMobile ? 64 : 96,
+    DYE_RESOLUTION: isMobile ? 256 : 384,
     DENSITY_DISSIPATION: 0.97,
     VELOCITY_DISSIPATION: 0.96,
     PRESSURE_DISSIPATION: 0.8,
-    PRESSURE_ITERATIONS: 20,
+    PRESSURE_ITERATIONS: isMobile ? 6 : 12,
     CURL: 18,
     SPLAT_RADIUS: 0.28,
-    BLOOM: true,
-    BLOOM_ITERATIONS: 4,
-    BLOOM_RESOLUTION: 256,
+    BLOOM: !isMobile,
+    BLOOM_ITERATIONS: isMobile ? 0 : 3,
+    BLOOM_RESOLUTION: isMobile ? 128 : 192,
     BLOOM_INTENSITY: 0.4,
     BLOOM_THRESHOLD: 0.6,
     BLOOM_SOFT_KNEE: 0.7,
@@ -792,10 +803,12 @@ void main(){
   };
 
   initFBOs();
-  multipleSplats(parseInt(Math.random() * 12) + 6);
+  multipleSplats(isMobile ? 2 : parseInt(Math.random() * 8) + 4);
 
   let last = 0;
+  let lastFrame = 0;
   let fluidRafId = 0;
+  const frameInterval = isMobile ? 1000 / 24 : 1000 / 30;
 
   function tick(now) {
     if (shouldPause()) {
@@ -803,8 +816,14 @@ void main(){
       return;
     }
 
-    const dt = Math.min((now - last) / 1000, 0.016);
+    if (now - lastFrame < frameInterval) {
+      fluidRafId = requestAnimationFrame(tick);
+      return;
+    }
+
+    const dt = Math.min((now - lastFrame) / 1000, 0.05);
     last = now;
+    lastFrame = now;
     if (
       canvas.width !== canvas.clientWidth ||
       canvas.height !== canvas.clientHeight
@@ -819,7 +838,7 @@ void main(){
         splat(p.x, p.y, p.dx, p.dy, p.color);
         p.moved = false;
       }
-    step(Math.min(dt || 0.016, 0.016));
+    step(dt || 0.016);
     render(null);
     fluidRafId = requestAnimationFrame(tick);
   }
@@ -835,7 +854,7 @@ void main(){
   window.addEventListener("keydown", (e) => {
     if (e.key === " ") splatStack.push(parseInt(Math.random() * 12) + 5);
   });
-})();
+}
 
 /* ═══════════════════════════════════════════════════════════
    3.  CURSOR  — dot only, no ring
@@ -897,7 +916,7 @@ void main(){
 /* ═══════════════════════════════════════════════════════════
    4.  LIQUID REVEAL  (gl-wrap — Three.js)
    ═══════════════════════════════════════════════════════════ */
-(function initReveal() {
+function initReveal() {
   const VERT = `varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,1.0);}`;
   const FRAG = `
 precision highp float;
@@ -984,14 +1003,14 @@ void main(){
   );
 
   const loader = new THREE.TextureLoader();
-  loader.load("src/assets/photo-1.png", (t) => {
+  loader.load("src/assets/photo-1.jpg", (t) => {
     t.minFilter = THREE.LinearMipmapLinearFilter;
     t.magFilter = THREE.LinearFilter;
     t.wrapS = THREE.ClampToEdgeWrapping;
     t.wrapT = THREE.ClampToEdgeWrapping;
     uniforms.uLayerA.value = t;
   });
-  loader.load("src/assets/photo-2.png", (t) => {
+  loader.load("src/assets/photo-2.jpg", (t) => {
     t.minFilter = THREE.LinearMipmapLinearFilter;
     t.magFilter = THREE.LinearFilter;
     t.wrapS = THREE.ClampToEdgeWrapping;
@@ -1071,7 +1090,7 @@ void main(){
     renderer.setSize(nw, nh);
     uniforms.uAspect.value = nw / nh;
   });
-})();
+}
 
 /* ═══════════════════════════════════════════════════════════
    5.  HAMBURGER MENU  (nav-menu)
@@ -1243,30 +1262,9 @@ document.addEventListener("DOMContentLoaded", function () {
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
   const loadingArea = document.querySelector(".loading");
-  const progressText = document.querySelector(".loading-progress");
   const mainContainer = document.querySelector(".container");
-
-  let progress = 0;
-
-  // 1. Simulasi angka naik perlahan selama proses download berjalan
-  const counterInterval = setInterval(() => {
-    if (progress < 95) {
-      progress += Math.floor(Math.random() * 5) + 1;
-      if (progress > 95) progress = 95; // Tertahan di 95% jika internet lambat
-      progressText.innerText = progress + "%";
-    }
-  }, 100);
-
-  // 2. MAKSIMAL BERGANTUNG KONEKSI: Aktif tepat saat seluruh aset selesai diunduh
-  window.addEventListener("load", () => {
-    clearInterval(counterInterval); // Hentikan simulasi angka
-
-    progressText.innerText = "100%"; // Set langsung ke 100%
-
-    // INSTAN: Langsung tukar tampilan tanpa delay setTimeout
-    loadingArea.style.display = "none";
-    mainContainer.style.display = "flex";
-  });
+  if (loadingArea) loadingArea.style.display = "none";
+  if (mainContainer) mainContainer.style.display = "flex";
 });
 
 /* =========================
@@ -2054,3 +2052,41 @@ function syncLazyDialogs() {
 
 window.addEventListener("hashchange", syncLazyDialogs);
 syncLazyDialogs();
+
+const isCoarsePointer = matchMedia("(pointer: coarse)").matches;
+const shouldStartInteractiveCanvases = !prefersReducedMotion.matches;
+
+if (shouldStartInteractiveCanvases) {
+  let backgroundCanvasesStarted = false;
+
+  function startInteractiveCanvases(event) {
+    if (backgroundCanvasesStarted || isModalDialogOpen()) return;
+    if (
+      isCoarsePointer &&
+      event.target.closest("a, button, input, textarea, .overlay")
+    ) {
+      return;
+    }
+
+    backgroundCanvasesStarted = true;
+    document.removeEventListener("pointermove", startInteractiveCanvases);
+    document.removeEventListener("pointerdown", startInteractiveCanvases);
+
+    loadExternalScript(
+      "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
+      "THREE",
+    )
+      .then(() => {
+        initReveal();
+        setTimeout(initFluid, 250);
+      })
+      .catch((error) => console.error("Background effects unavailable:", error));
+  }
+
+  document.addEventListener("pointermove", startInteractiveCanvases, {
+    passive: true,
+  });
+  document.addEventListener("pointerdown", startInteractiveCanvases, {
+    passive: true,
+  });
+}
