@@ -1541,13 +1541,13 @@ if (!("IntersectionObserver" in window)) {
 ========================= */
 
 let chartInitialized = false;
-Chart.defaults.font.family = "'JetBrains Mono', monospace"; 
 
 const chartObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
-        if(entry.isIntersecting && !chartInitialized){
+    if(entry.isIntersecting && !chartInitialized && typeof Chart !== "undefined"){
 
             chartInitialized = true;
+      Chart.defaults.font.family = "'JetBrains Mono', monospace";
 
             new Chart(document.getElementById("successChart"), {
               type: "bar",
@@ -1630,15 +1630,14 @@ const chartObserver = new IntersectionObserver((entries)=>{
     threshold:0.3
 });
 
-chartObserver.observe(
-    document.querySelector('.testing-chart-card')
-);
+const chartCard = document.querySelector(".testing-chart-card");
+if (chartCard) chartObserver.observe(chartCard);
 
 
 /* ═══════════════════════════════════════════════════════
    SPHERICAL PLEXUS — Three.js
    ═══════════════════════════════════════════════════════ */
-(function() {
+function initializePlexus(root) {
  
   /* ── Communities ── */
   const communities = [
@@ -1655,9 +1654,15 @@ chartObserver.observe(
   ];
  
   /* ── Setup ── */
-  const canvas   = document.getElementById("plexus-canvas");
+  const canvas = root.querySelector("#plexus-canvas");
+  if (!canvas) return;
+  if (canvas.__resumeAnimation) {
+    canvas.__resumeAnimation();
+    return;
+  }
   const wrap     = canvas.parentElement;
-  const nodesEl  = document.getElementById("community-nodes");
+  const nodesEl  = root.querySelector("#community-nodes");
+  if (!wrap || !nodesEl || typeof THREE === "undefined") return;
  
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -1845,8 +1850,13 @@ chartObserver.observe(
   /* ── Animate ── */
   const clock = new THREE.Clock();
  
-  (function animate() {
-    requestAnimationFrame(animate);
+  let animationFrame = 0;
+  function animate() {
+    if (window.location.hash !== "#dialogCase") {
+      animationFrame = 0;
+      return;
+    }
+    animationFrame = requestAnimationFrame(animate);
     const t   = clock.getElapsedTime();
     const dt  = clock.getDelta ? 0.016 : 0.016;
  
@@ -1884,45 +1894,163 @@ chartObserver.observe(
       el.style.left = x + "px";
       el.style.top  = y + "px";
     });
-  })();
+  }
+
+  canvas.__resumeAnimation = () => {
+    if (!animationFrame) animationFrame = requestAnimationFrame(animate);
+  };
+  canvas.__resumeAnimation();
  
-})();
+}
 
 
   /* ═══════════════════════════════════════════════════════
    Portfolio Section Data + Render
    ═══════════════════════════════════════════════════════ */
 
-const $cell = document.querySelectorAll(".portfolio-card");
+document.addEventListener("click", (event) => {
+  const collapser = event.target.closest(".js-collapser");
+  const expander = event.target.closest(".js-expander");
+  const card = (collapser || expander)?.closest(".portfolio-card");
+  if (!card) return;
 
-$cell.forEach((cell) => {
-  const expanderBtn = cell.querySelector(".js-expander");
-  const collapserBtn = cell.querySelector(".js-collapser");
+  if (collapser) {
+    event.stopPropagation();
+    card.classList.remove("is-expanded");
+    card.classList.add("is-collapsed");
+    return;
+  }
 
-  expanderBtn.addEventListener("click", () => {
-    if (cell.classList.contains("is-collapsed")) {
-      // Close all other expanded cards
-      $cell.forEach((otherCell) => {
-        if (otherCell !== cell) {
-          otherCell.classList.remove("is-expanded");
-          otherCell.classList.add("is-collapsed");
-        }
-      });
-      cell.classList.remove("is-collapsed");
-      cell.classList.add("is-expanded");
-
-      setTimeout(() => {
-        cell.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 200);
-    } else {
-      cell.classList.remove("is-expanded");
-      cell.classList.add("is-collapsed");
-    }
-  });
-
-  collapserBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    cell.classList.remove("is-expanded");
-    cell.classList.add("is-collapsed");
-  });
+  const cards = card.closest(".portfolio-cards");
+  if (card.classList.contains("is-collapsed")) {
+    cards?.querySelectorAll(".portfolio-card").forEach((otherCard) => {
+      if (otherCard !== card) {
+        otherCard.classList.remove("is-expanded");
+        otherCard.classList.add("is-collapsed");
+      }
+    });
+    card.classList.remove("is-collapsed");
+    card.classList.add("is-expanded");
+    setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "nearest" }), 200);
+  } else {
+    card.classList.remove("is-expanded");
+    card.classList.add("is-collapsed");
+  }
 });
+
+const modalLoads = new Map();
+const externalScriptLoads = new Map();
+
+function loadExternalScript(src, globalName) {
+  if (window[globalName]) return Promise.resolve(window[globalName]);
+  if (externalScriptLoads.has(src)) return externalScriptLoads.get(src);
+
+  const load = new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    script.onload = () => {
+      if (window[globalName]) resolve(window[globalName]);
+      else reject(new Error(`${globalName} did not initialize`));
+    };
+    script.onerror = () => reject(new Error(`Failed to load ${globalName}`));
+    document.head.appendChild(script);
+  });
+
+  externalScriptLoads.set(src, load);
+  load.catch(() => externalScriptLoads.delete(src));
+  return load;
+}
+
+function initializeLoadedDialog(modal) {
+  modal.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+  modal.querySelectorAll(".journey-stage").forEach((stage) => {
+    stage.classList.add("is-visible");
+  });
+  const journeySpine = modal.querySelector("#spine-fill");
+  if (journeySpine) journeySpine.style.width = "100%";
+
+  const roadmapSteps = Array.from(modal.querySelectorAll(".roadmap-step"));
+  roadmapSteps.forEach((step) => step.classList.add("is-visible"));
+  const roadmapSpine = modal.querySelector("#roadmap-spine-fill");
+  if (roadmapSpine && roadmapSteps.length) {
+    const released = roadmapSteps.filter((step) => step.dataset.status === "released").length;
+    const progress = roadmapSteps.some((step) => step.dataset.status === "progress") ? 0.5 : 0;
+    roadmapSpine.style.width = `${Math.min(100, ((released + progress) / roadmapSteps.length) * 100)}%`;
+  }
+  modal.querySelectorAll(".flow-node").forEach((node) => node.classList.add("is-visible"));
+
+  const chartCard = modal.querySelector(".testing-chart-card");
+  if (chartCard) {
+    const chartLoader = new IntersectionObserver((entries, currentObserver) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      currentObserver.disconnect();
+      loadExternalScript("https://cdn.jsdelivr.net/npm/chart.js", "Chart")
+        .then(() => chartObserver.observe(chartCard))
+        .catch((error) => console.error("Chart unavailable:", error));
+    }, { root: modal, rootMargin: "200px" });
+    chartLoader.observe(chartCard);
+  }
+
+  const plexusCanvas = modal.querySelector("#plexus-canvas");
+  if (plexusCanvas) {
+    const plexusLoader = new IntersectionObserver((entries, currentObserver) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      currentObserver.disconnect();
+      loadExternalScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js", "THREE")
+        .then(() => initializePlexus(modal))
+        .catch((error) => console.error("Community visualization unavailable:", error));
+    }, { root: modal, rootMargin: "200px" });
+    plexusLoader.observe(plexusCanvas);
+  }
+}
+
+function loadDialogContent(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal || !modal.dataset.modalSrc) return Promise.resolve();
+
+  if (modal.dataset.loaded === "true") {
+    initializePlexus(modal);
+    return Promise.resolve();
+  }
+  if (modalLoads.has(modalId)) return modalLoads.get(modalId);
+
+  const content = modal.querySelector(".dialog-content");
+  const load = fetch(modal.dataset.modalSrc)
+    .then((response) => {
+      if (!response.ok) throw new Error(`Failed to load ${modalId}`);
+      return response.text();
+    })
+    .then((html) => {
+      const parsed = new DOMParser().parseFromString(html, "text/html");
+      const sourceBody = parsed.querySelector(`#${modalId} .dialog-body`);
+      const currentBody = modal.querySelector(".dialog-body");
+      if (!sourceBody || !currentBody) throw new Error(`Invalid dialog fragment: ${modalId}`);
+
+      currentBody.replaceWith(document.importNode(sourceBody, true));
+      modal.dataset.loaded = "true";
+      initializeLoadedDialog(modal);
+    })
+    .catch((error) => {
+      modalLoads.delete(modalId);
+      if (content) content.textContent = "Unable to load this content. Please close the dialog and try again.";
+      console.error("Dialog content failed to load:", error);
+    });
+
+  modalLoads.set(modalId, load);
+  return load;
+}
+
+function syncLazyDialogs() {
+  const activeId = window.location.hash.slice(1);
+  document.querySelectorAll("[data-modal-src]").forEach((modal) => {
+    const active = modal.id === activeId;
+    modal.setAttribute("aria-hidden", active ? "false" : "true");
+    if (active) loadDialogContent(modal.id);
+  });
+  syncBackgroundEffects();
+}
+
+window.addEventListener("hashchange", syncLazyDialogs);
+syncLazyDialogs();

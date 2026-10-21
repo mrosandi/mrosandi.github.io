@@ -1,0 +1,739 @@
+ <div id="dialogPorto" class="overlay overlay-scroll" role="dialog">
+     <div class="dialog-body dialog-case-body">
+      <a class="close" href="#" aria-label="Close dialog">&times;</a>
+      <div class="dialog-content dialog-case-content">
+         <!--  FEATURES PORTFOLIOS -->
+        <section class="case-section case-portfolio">
+          <div class="case-section-header">
+            <!-- <span class="case-section-num"><span>02</span> SECTION </span> -->
+            <h3 class="case-section-title">Portfolios</h3>
+          </div>
+          <p class="case-section-desc">
+          A collection of digital products, user experiences, and design explorations across web, mobile, and AI-assisted interfaces.
+        </p>
+            <div class="portfolio-cards" id="portfolioCardsContainer">
+
+                <!-- PROJECT 06 (2025) - Enterprise -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/fleet/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #E8F1F5; color: #1D4ED8;">Enterprise</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A fleet management and mining operations system combining a web dashboard with an application for vehicle drivers.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Fleet Management System</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Web App</span>
+                                <span>Dashboard · App</span>
+                                <span>2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Complex fleet operations required a unified tracking interface for drivers and managers. The objective was to combine a web dashboard with a mobile app. We streamlined telemetry data workflows and designed responsive dashboards, delivering improved operational visibility and more efficient monitoring.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/fleet/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 16 (2024) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/tergo/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FEF9C3; color: #854D0E;">Digital Marketing & Sales</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A sustainability-focused website presenting TerGo’s approach to measuring, maximizing, and monetizing environmental actions.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">TerGo Website</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>WordPress Elementor</span>
+                                <span>2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">TerGo required a digital platform to promote sustainability metrics tracking. The task was to design and build an intuitive WordPress site using Elementor. We structured a clean information architecture and responsive layout, delivering a clearer user experience and stronger visual presentation.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/tergo/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 05 (2022) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/automotive/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FEF9C3; color: #854D0E;">Digital Marketing & Sales</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">An automotive e-commerce platform designed to support the digital vehicle shopping experience.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">E-Commerce Platform</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Mobile Web</span>
+                                <span>UI/UX Design</span>
+                                <span>2022</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Digital vehicle shopping suffered from cluttered catalog structures. The task was to design an intuitive automotive e-commerce web app. We optimized vehicle comparison filters and gallery views, resulting in clearer content discovery and a more refined shopping experience.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 11 (2021) - FinTech -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/fintech/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #EEF2FF; color: #4F46E5;">FinTech</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile application combining fintech and point-of-sale functionality.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Fintech & POS App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                         <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Small businesses needed a unified tool for transactions and point-of-sale management. The objective was to merge fintech and POS features into an app. We streamlined payment steps and designed clear transaction records, resulting in an efficient, streamlined interaction flow.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 12 (2021) - EdTech -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/elearning/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #ECFDF5; color: #047857;">EdTech</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile e-learning application designed for Japanese language learning.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Japanese E-Learning App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2021</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Language learners struggled with retention on complex digital study tools. The task was to create an intuitive mobile learning experience. We designed simplified vocabulary cards and interactive navigation, delivering improved usability and a more engaging learning journey.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 03 (2020) - EdTech -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/tutor/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #ECFDF5; color: #047857;">EdTech</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">An online learning platform designed to support digital tutoring and learning activities.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">E-Learning Tutoring Center</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Web App</span>
+                                <span>Dashboard</span>
+                                <span>2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Digital tutoring platforms needed structured access to learning materials. The objective was to design an online tutoring web app. We organized course dashboards and session schedules, delivering improved usability and a clearer information hierarchy for students.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/tutor/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- PROJECT 18 (2018) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/pagebuilder/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FEF9C3; color: #854D0E;">Digital Marketing & Sales</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A web-based visual page builder designed to assist users in creating custom website layouts</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Page Builder</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>UI/UX Design</span>
+                                <span>2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Creating custom web layouts without coding required intuitive visual design tools. The task was to design a drag-and-drop page builder interface. We mapped modular component panels and preview states, delivering improved usability, a scalable interface structure, and efficient content creation.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/pagebuilder/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                 <!-- PROJECT 10 (2020) - EdTech -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/quiz/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #ECFDF5; color: #047857;">EdTech</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile quiz application designed around interactive question-and-answer experiences.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Quiz App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Interactive Q&A experiences lacked engaging mobile presentation. The task was to design a gamified quiz application interface. We created responsive question cards and score tracking layouts, yielding a clearer information hierarchy and more consistent user engagement.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                  <!-- PROJECT 07 (2020) - Travel & Transportation -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/villa/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #F0FDFA; color: #0D9488;">Travel & Transportation</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile application designed for browsing, managing, and booking villa rentals.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Villa App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2020</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Villa booking processes lacked a convenient mobile discovery interface. The objective was to design a user-friendly rental application. We organized property listings and booking flows, resulting in a streamlined interaction flow, clearer content discovery, and a more consistent user experience.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 04 (2019) - Enterprise -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/onboarding/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #E8F1F5; color: #1D4ED8;">Enterprise</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A website experience focused on guiding users through an onboarding process.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Onboarding Process</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>UX / UI Design</span>
+                                <span>2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Users experienced drop-offs during complex digital onboarding sequences. The task was to simplify the registration journey. We conducted user flow analysis, redesigned step-by-step navigation, and refined UI elements, resulting in a streamlined interaction flow and improved completion rates.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/onboarding/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 09 (2019) - Lifestyle -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/fitness/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FFFBEB; color: #D97706;">Lifestyle</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile application focused on fitness and health activities.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Fitness & Health App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Users lacked an intuitive way to track daily fitness activities. The objective was to design a mobile application focused on health tracking. We mapped core user routines and designed clean dashboard metrics, delivering improved usability and a seamless experience.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 01 (2018) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/dashboard/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #E8F1F5; color: #1D4ED8;">Enterprise</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A cooperative management dashboard designed to streamline financial reporting and member administration tasks.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Cooperative Management</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>Dashboard</span>
+                                <span>2018</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Cooperative management faced fragmented administrative and financial reporting workflows. The task was to design a unified web dashboard. We structured data tables and summary widgets, delivering improved operational visibility, streamlined monitoring, and clearer information hierarchy.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/dashboard/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 08 (2017) - Lifestyle -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/healthy/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FFFBEB; color: #D97706;">Lifestyle</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A mobile application for a healthy diet and nutrition program.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Healthy Diet Program App</h2>
+                            <div class="portfolio-card__meta">
+                                <span>App</span>
+                                <span>UI/UX Design</span>
+                                <span>2017</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Participants in nutrition programs needed simple meal tracking tools. The task was to design an accessible mobile diet application. We organized food logging workflows and clean visual charts, resulting in a clearer information hierarchy and better daily user tracking.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                         <div class="portfolio-gallery portfolio-gallery--app">
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/1.webp" alt="App screen 1" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/2.webp" alt="App screen 2" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/3.webp" alt="App screen 3" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/4.webp" alt="App screen 4" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/5.webp" alt="App screen 5" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/6.webp" alt="App screen 6" loading="lazy"></div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 02 (2016) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/donation/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FEF9C3; color: #854D0E;">Digital Marketing & Sales</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A web application designed to support online donation and funding activities.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Donation / Funding</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Web App</span>
+                                <span>UI/UX Design</span>
+                                <span>2016</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Fundraising campaigns required transparent and secure contribution flows. The task was to design an online donation web application. We streamlined payment steps and impact tracking views, resulting in a more consistent user experience and clearer donor trust.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/donation/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 17 (2018–2024) - Digital Marketing & Sales -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/homepage/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FEF9C3; color: #854D0E;">Digital Marketing & Sales</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A collection of homepage designs created across different digital products, industries, and project requirements.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Homepage Design Collection</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>Landing Page</span>
+                                <span>2016–2024</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Various digital products lacked unified, engaging landing page presentations. The objective was to design versatile homepages tailored to distinct business needs. We researched industry standards and crafted customized wireframes and high-fidelity interfaces, resulting in consistent user discovery and polished visual flows.</p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/homepage/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 13 (2026 - AI Exploration) - UI Generation -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/assisstant/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FAF5FF; color: #7E22CE;">UI Generation</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A prompt-driven exploration of an onboarding and community creation interface using AI-assisted UI generation.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">AI Assistant Onboarding</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>Prompting</span>
+                                <span>2026</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Community platforms needed engaging onboarding flows for new users. The objective was to prototype community creation interfaces using AI assistance. We iterated prompt structures for profile setup steps, resulting in a more consistent user experience and clearer guidance. <a href="https://www.figma.com/make/Pm7afU8ghyBXLFD0NcwmiC/Create-a-Community-AI-Chat?t=M9EBeUuvTwBGBK8C-1" target="_blank" title="View Prompt">[View Prompt]</a> </p> 
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/assisstant/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 14 (2026 - AI Exploration) - UI Generation -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/enterprise/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FAF5FF; color: #7E22CE;">UI Generation</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A prompt-driven exploration of an enterprise data-entry interface using AI-assisted UI generation.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Enterprise Data-Entry</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>Prompting</span>
+                                <span>2026</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">Enterprise data entry workflows often suffer from slow input times and cluttered form layouts. The objective was to explore AI-assisted prompt-driven UI generation for optimizing rapid data entry. We structured prompt sequences for high-density form components, delivering improved usability, a clearer information hierarchy, and a streamlined interaction flow. <a href="https://www.figma.com/make/X4QkGfcFVfuZmfZspcfMtN/Enterprise-Data-Entry?t=rpnhnvU1w9zTdyeG-1" target="_blank" title="View Prompt">[View Prompt]</a></p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/enterprise/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- PROJECT 15 (2026 - AI Exploration) - UI Generation -->
+                <article class="portfolio-card is-collapsed">
+                    <div class="portfolio-card__inner js-expander">
+                        <figure class="portfolio-card__media">
+                            <img src="./src/assets/portfolio/main.webp" alt="Project preview" class="portfolio-card__image" loading="lazy">
+                            <div class="portfolio-card__category" style="background-color: #FAF5FF; color: #7E22CE;">UI Generation</div>
+                            <div class="portfolio-card__overlay">
+                                <div class="portfolio-overlay__title">Project Overview</div>
+                                <p class="portfolio-overlay__text">A prompt-driven exploration of a portfolio website using AI-assisted UI generation.</p>
+                            </div>
+                        </figure>
+                        <div class="portfolio-card__content">
+                            <h2 class="portfolio-card__title">Portfolio Website</h2>
+                            <div class="portfolio-card__meta">
+                                <span>Website</span>
+                                <span>Prompting</span>
+                                <span>2026</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-card__expander">
+                        <span class="portfolio-collapser js-collapser">✕</span>
+                        <div class="portfolio-gallery__desc">
+                            <div class="portfolio-gallery__title">Short Description</div>
+                            <p class="portfolio-gallery__text">An advanced exploration of prompt-driven web interfaces was needed. The objective was to experiment with AI-assisted UI generation for personal branding. We tested structured prompting workflows to assemble layout blocks, delivering a scalable interface structure and efficient exploration. <a href="https://www.figma.com/make/urvs8ti1Pl0SnirCZm2MdR/UI-UX-Engineer-Portfolio-Website?t=IGjcDt2awe0zMcSQ-1" target="_blank" title="View Prompt">[View Prompt]</a> </p>  
+                        </div>
+                        <!-- /.portfolio-gallery__desc -->
+                        <div class="portfolio-gallery">
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/portfolio/1.webp" alt="Main view" loading="lazy"></figure>
+                            <div class="portfolio-gallery__thumbs">
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/2.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/3.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/4.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/5.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/6.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/7.webp" alt="Thumb" loading="lazy"></figure>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+      </div>
+    </div>
+   
+  </div>

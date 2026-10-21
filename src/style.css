@@ -474,6 +474,26 @@ footer small {
   opacity: 1;
 }
 
+.overlay.is-open,
+.overlay.open,
+.overlay.active,
+.overlay:target {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay.is-open .dialog-body,
+.overlay.open .dialog-body,
+.overlay.active .dialog-body,
+.overlay:target .dialog-body {
+  top: 0;
+  -webkit-animation-name: fade-in;
+  animation-name: fade-in;
+  -webkit-animation-duration: .6s;
+  animation-duration: .6s;
+}
+
 .dialog-body {
   position: relative;
   margin: 50px 20px;
@@ -3740,11 +3760,14 @@ svg.flow-connectors {
 
 .design-system-board {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
+  min-width: 0;
 }
 
 .board-column {
+  box-sizing: border-box;
+  min-width: 0;
   background: #F7F7F7;
   padding: 32px;
   border-radius: 16px;
@@ -5352,7 +5375,11 @@ svg.flow-connectors {
   }
 
   .design-system-board {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .board-column {
+    width: 100%;
   }
 
   .tree-leaves {
@@ -5430,7 +5457,26 @@ svg.flow-connectors {
     height: auto;
   }
   .component-tokens-showcase {
-    grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+    min-width: 0;
+  }
+  .spacing-scale-showcase{
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+
+  .token-item--full {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .spacing-scale-showcase .spacing-list {
+    flex: 0 0 auto;
   }
 
   .tree-leaves {
