@@ -1207,7 +1207,7 @@
         <!-- Grayscale Wireframe 1 -->
         <div class="wireframe-card">
           <div class="wf-title">Desktop Wireframe</div>
-          <img src="./src/assets/wireframe-desktop.webp" class="wireframe-media" alt="Wireframe Desktop"/>
+          <img src="./src/assets/wireframe-desktop.webp" class="wireframe-media" alt="Wireframe Desktop" width="2880" height="1800" loading="lazy" decoding="async"/>
          
           <p class="wf-annotation"><strong>Key Considerations:</strong>Focused on defining navigation, content hierarchy, and key user workflows for desktop users.</p>
         </div>
@@ -1215,7 +1215,7 @@
         <!-- Grayscale Wireframe 2 -->
         <div class="wireframe-card">
           <div class="wf-title">Mobile Wireframe</div>
-          <img src="./src/assets/wireframe-mobile.webp" class="wireframe-media" alt="Wireframe Desktop"/>
+          <img src="./src/assets/wireframe-mobile.webp" class="wireframe-media" alt="Wireframe Mobile" width="2880" height="1800" loading="lazy" decoding="async"/>
           <p class="wf-annotation"><strong>Key Considerations:</strong>Optimized for mobile interactions, emphasizing accessibility, simplified navigation, and efficient task completion.</p>
         </div>
       </div>
@@ -1234,7 +1234,7 @@
 
       <div class="final-ui-gallery">
         <div class="ui-gallery-item">
-          <img src="./src/assets/homepage.webp" alt="Homepage" />
+          <img src="./src/assets/homepage.webp" alt="Homepage" width="1920" height="1280" loading="lazy" decoding="async" />
           
           <div class="ui-body">
             <div class="ui-caption">Homepage</div>
@@ -1243,7 +1243,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-newsfeed.webp" alt="Newsfeed" />
+          <img src="./src/assets/porto-newsfeed.webp" alt="Newsfeed" width="1920" height="1280" loading="lazy" decoding="async"/>
           
            <div class="ui-body">
             <div class="ui-caption">Newsfeed</div>
@@ -1252,7 +1252,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-chat.webp" alt="Chat" />
+          <img src="./src/assets/porto-chat.webp" alt="Chat" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Chat</div>
@@ -1261,7 +1261,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-events.webp" alt="Event Management" />
+          <img src="./src/assets/porto-events.webp" alt="Event Management" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Event Management</div>
@@ -1270,7 +1270,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-marketplace.webp" alt="Marketplaces" />
+          <img src="./src/assets/porto-marketplace.webp" alt="Marketplaces" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Marketplaces</div>
@@ -1279,7 +1279,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-resources.webp" alt="Resources" />
+          <img src="./src/assets/porto-resources.webp" alt="Resources" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Resources</div>
@@ -1288,7 +1288,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-expert.webp" alt="Experts" />
+          <img src="./src/assets/porto-expert.webp" alt="Experts" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Experts</div>
@@ -1297,7 +1297,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-dashboard.webp" alt="User Dashboard" />
+          <img src="./src/assets/porto-dashboard.webp" alt="User Dashboard" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">User Dashboard</div>
@@ -1306,7 +1306,7 @@
           <!-- /.ui-body -->
         </div>
         <div class="ui-gallery-item">
-          <img src="./src/assets/porto-admin-dashboard.webp" alt="Admin Dashboard" />
+          <img src="./src/assets/porto-admin-dashboard.webp" alt="Admin Dashboard" width="1920" height="1280" loading="lazy" decoding="async"/>
           
           <div class="ui-body">
             <div class="ui-caption">Admin Dashboard</div>

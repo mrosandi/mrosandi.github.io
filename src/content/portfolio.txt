@@ -41,14 +41,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/fleet/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/fleet/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/fleet/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -82,14 +82,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/tergo/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/tergo/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tergo/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -123,12 +123,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/automotive/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -161,12 +161,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fintech/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -199,12 +199,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/elearning/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -237,14 +237,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/tutor/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/tutor/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/tutor/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -278,14 +278,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/pagebuilder/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/pagebuilder/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/pagebuilder/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -319,12 +319,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/quiz/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -357,12 +357,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/villa/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -395,14 +395,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/onboarding/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/onboarding/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/onboarding/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -436,12 +436,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/fitness/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -474,14 +474,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/dashboard/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/dashboard/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/dashboard/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -515,12 +515,12 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                          <div class="portfolio-gallery portfolio-gallery--app">
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/1.webp" alt="App screen 1" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/2.webp" alt="App screen 2" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/3.webp" alt="App screen 3" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/4.webp" alt="App screen 4" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/5.webp" alt="App screen 5" loading="lazy"></div>
-                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/6.webp" alt="App screen 6" loading="lazy"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/1.webp" alt="App screen 1" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/2.webp" alt="App screen 2" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/3.webp" alt="App screen 3" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/4.webp" alt="App screen 4" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/5.webp" alt="App screen 5" width="1920" height="1280" loading="lazy" decoding="async"></div>
+                            <div class="portfolio-gallery__app-item"><img src="./src/assets/healthy/6.webp" alt="App screen 6" width="1920" height="1280" loading="lazy" decoding="async"></div>
                         </div>
                     </div>
                 </article>
@@ -553,14 +553,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/donation/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/donation/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/donation/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -594,14 +594,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/homepage/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/homepage/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/homepage/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -635,14 +635,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/assisstant/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/assisstant/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/assisstant/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -676,14 +676,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/enterprise/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/enterprise/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/enterprise/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
@@ -717,14 +717,14 @@
                         </div>
                         <!-- /.portfolio-gallery__desc -->
                         <div class="portfolio-gallery">
-                            <figure class="portfolio-gallery__main"><img src="./src/assets/portfolio/1.webp" alt="Main view" loading="lazy"></figure>
+                            <figure class="portfolio-gallery__main"><img src="./src/assets/portfolio/1.webp" alt="Main view" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             <div class="portfolio-gallery__thumbs">
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/2.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/3.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/4.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/5.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/6.webp" alt="Thumb" loading="lazy"></figure>
-                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/7.webp" alt="Thumb" loading="lazy"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/2.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/3.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/4.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/5.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/6.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
+                                <figure class="portfolio-gallery__thumb"><img src="./src/assets/portfolio/7.webp" alt="Thumb" width="1920" height="1280" loading="lazy" decoding="async"></figure>
                             </div>
                         </div>
                     </div>
