@@ -1694,7 +1694,7 @@
        <div class="roadmap-canvas">
     <div class="roadmap-spine">
       <div class="roadmap-spine-track"></div>
-      <div class="roadmap-spine-fill" id="roadmap-spine-fill"></div>
+      <!-- <div class="roadmap-spine-fill" id="roadmap-spine-fill"></div> -->
     </div>
 
     <div class="roadmap-track" id="roadmap-track">
@@ -1703,61 +1703,45 @@
       <div class="roadmap-step" data-status="released" data-step="1">
         <div class="roadmap-node"><div class="roadmap-node-inner"></div></div>
         <div class="roadmap-card">
-          <div class="roadmap-badge"><span class="roadmap-badge-dot"></span>Released</div>
-          <div class="roadmap-quarter">Q1 — Shipped</div>
+          <div class="roadmap-badge"><span>Q1</span> • Foundation</div>
           <div class="roadmap-icon icon-layout-dashboard"></div>
           <div class="roadmap-card-title">New Modules &amp; Feature Expansion</div>
-          <div class="roadmap-card-desc">Continuously introduce new community modules and expand platform capabilities — communication, collaboration, memberships, events, fundraising, and commerce in one ecosystem.</div>
+          <div class="roadmap-card-desc">Expanding core product capabilities across communication, collaboration, memberships, events, fundraising, and commerce.</div>
         </div>
       </div>
 
       <!-- Step 02: Homepage Template Library -->
-      <div class="roadmap-step" data-status="released" data-step="2">
+      <div class="roadmap-step" data-status="progress" data-step="2">
         <div class="roadmap-node"><div class="roadmap-node-inner"></div></div>
         <div class="roadmap-card">
-          <div class="roadmap-badge"><span class="roadmap-badge-dot"></span>Released</div>
-          <div class="roadmap-quarter">Q2 — Shipped</div>
+          <div class="roadmap-badge"><span>Q2</span> • Customization</div>
           <div class="roadmap-icon icon-panels-top-left"></div>
           <div class="roadmap-card-title">Homepage Template Library</div>
-          <div class="roadmap-card-desc">Expand customizable homepage templates, letting communities quickly launch branded experiences with flexible layouts and reusable design components.</div>
+          <div class="roadmap-card-desc">Expanding customizable homepage templates with flexible layouts and reusable components.</div>
         </div>
       </div>
 
       <!-- Step 03: Accessibility Enhancement -->
-      <div class="roadmap-step" data-status="progress" data-step="3">
+      <div class="roadmap-step" data-status="planned" data-step="3">
         <div class="roadmap-node"><div class="roadmap-node-inner"></div></div>
         <div class="roadmap-card">
-          <div class="roadmap-badge"><span class="roadmap-badge-dot"></span>In Progress</div>
-          <div class="roadmap-quarter">Q3 — Underway</div>
+          <div class="roadmap-badge"><span>Q3</span> • Accessibility</div>
           <div class="roadmap-icon icon-gauge"></div>
           <div class="roadmap-card-title">Accessibility Enhancement</div>
-          <div class="roadmap-card-desc">Improve usability by meeting WCAG 2.2 AA standards — enhancing keyboard navigation, screen reader compatibility, color contrast, and inclusive interactions.</div>
+          <div class="roadmap-card-desc">Improving keyboard navigation, screen reader compatibility, color contrast, and inclusive interactions.</div>
         </div>
       </div>
 
       <!-- Step 04: Advanced Community Analytics -->
-      <div class="roadmap-step" data-status="planned" data-step="4">
+      <div class="roadmap-step" data-status="future" data-step="4">
         <div class="roadmap-node"><div class="roadmap-node-inner"></div></div>
         <div class="roadmap-card">
-          <div class="roadmap-badge"><span class="roadmap-badge-dot"></span>Planned</div>
-          <div class="roadmap-quarter">Q4 — Upcoming</div>
+          <div class="roadmap-badge"><span>Q4</span> • >Analytics</div>
           <div class="roadmap-icon icon-chart-no-axes-column"></div>
           <div class="roadmap-card-title">Advanced Community Analytics</div>
-          <div class="roadmap-card-desc">Deliver real-time dashboards with engagement insights, member retention metrics, event performance, revenue tracking, and predictive community health analytics.</div>
+          <div class="roadmap-card-desc">Expanding dashboard insights for engagement, member retention, event performance, revenue, and community health.</div>
         </div>
       </div>
-
-      <!-- Step 05: AI-Assisted Onboarding -->
-      <!-- <div class="roadmap-step" data-status="future" data-step="5">
-        <div class="roadmap-node"><div class="roadmap-node-inner"></div></div>
-        <div class="roadmap-card">
-          <div class="roadmap-badge"><span class="roadmap-badge-dot"></span>Future Vision</div>
-          <div class="roadmap-quarter">Next Year — Exploring</div>
-          <div class="roadmap-icon icon-sparkles"></div>
-          <div class="roadmap-card-title">AI-Assisted Onboarding</div>
-          <div class="roadmap-card-desc">Simplify community setup through intelligent onboarding that automatically recommends modules, imports members, configures settings, and guides best practices.</div>
-        </div>
-      </div> -->
 
     </div>
   </div>

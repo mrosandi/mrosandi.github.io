@@ -1261,7 +1261,7 @@ footer small {
 }
 .case-section-num span::after{
   content:"";
-  width:32px;
+  width:16px;
   height:1px;
   background-color: rgba(0,0,0,0.1);
   margin: 0 5px 0 8px;
@@ -3274,28 +3274,27 @@ svg.flow-connectors {
 }
 
 /* status → node coloring */
-.roadmap-step[data-status="released"] .roadmap-node { border-color: var(--teal); }
-.roadmap-step[data-status="released"] .roadmap-node-inner { background: var(--teal); }
+.roadmap-step[data-status="released"] .roadmap-node { border-color: var(--teal); box-shadow: 0 0 0 6px #2cb67d16;}
+.roadmap-step[data-status="released"] .roadmap-node-inner { background: var(--teal); opacity: .55;}
 
 .roadmap-step[data-status="progress"] .roadmap-node {
   border-color: var(--orange);
   box-shadow: 0 0 0 6px rgba(240,84,27,.12);
-  animation: roadmap-node-pulse 2.2s ease-in-out infinite;
 }
-.roadmap-step[data-status="progress"] .roadmap-node-inner { background: var(--orange); }
+.roadmap-step[data-status="progress"] .roadmap-node-inner { background: var(--orange); opacity: .55;}
 
 @keyframes roadmap-node-pulse {
-  0%, 100% { box-shadow: 0 0 0 6px rgba(240,84,27,.12); }
-  50%      { box-shadow: 0 0 0 11px rgba(240,84,27,.06); }
+  0%, 100% { box-shadow: 0 0 0 6px rgba(186, 186, 186, 0.12); }
+  50%      { box-shadow: 0 0 0 11px rgba(66, 66, 66, 0.06); }
 }
 
-.roadmap-step[data-status="planned"] .roadmap-node { border-color: var(--blue-mid); }
-.roadmap-step[data-status="planned"] .roadmap-node-inner { background: var(--blue-mid); opacity: .55; transform: scale(.7); }
-.roadmap-step.is-visible[data-status="planned"] .roadmap-node-inner { opacity: .55; transform: scale(.7); }
+.roadmap-step[data-status="planned"] .roadmap-node { border-color: var(--blue-mid); box-shadow: 0 0 0 6px #4a6fd61c;}
+.roadmap-step[data-status="planned"] .roadmap-node-inner { background: var(--blue-mid); }
+.roadmap-step.is-visible[data-status="planned"] .roadmap-node-inner { opacity: .55; }
 
-.roadmap-step[data-status="future"] .roadmap-node { border-color: var(--violet); border-style: dashed; }
-.roadmap-step[data-status="future"] .roadmap-node-inner { background: var(--violet); opacity: .4; transform: scale(.55); }
-.roadmap-step.is-visible[data-status="future"] .roadmap-node-inner { opacity: .4; transform: scale(.55); }
+.roadmap-step[data-status="future"] .roadmap-node { border-color: var(--violet); box-shadow: 0 0 0 6px #8e6cf51a}
+.roadmap-step[data-status="future"] .roadmap-node-inner { background: var(--violet); }
+.roadmap-step.is-visible[data-status="future"] .roadmap-node-inner { opacity: .55; }
 
 /* ── Card ─────────────────────────────────────────────────── */
 .roadmap-card {
@@ -3308,6 +3307,8 @@ svg.flow-connectors {
   transition: transform .32s cubic-bezier(.25,.46,.45,.94),
               box-shadow .32s ease,
               border-color .32s ease;
+  position: relative;
+  height: 100%;
 }
 
 .roadmap-step:hover .roadmap-card {
@@ -3320,10 +3321,18 @@ svg.flow-connectors {
   box-shadow: 0 24px 44px rgba(44,182,125,.14), 0 4px 14px rgba(44,182,125,.10);
   border-color: rgba(44,182,125,.3);
 }
+.roadmap-step:hover .roadmap-node {
+  animation: roadmap-node-pulse 2.2s ease-in-out infinite;
+}
+
 .roadmap-step[data-status="progress"]:hover .roadmap-card {
   box-shadow: 0 24px 44px rgba(240,84,27,.16), 0 4px 14px rgba(240,84,27,.12);
   border-color: rgba(240,84,27,.32);
 }
+/* .roadmap-step[data-status="progress"]:hover .roadmap-node {
+  box-shadow: 0 0 0 6px rgba(240,84,27,.12);
+  animation: roadmap-node-pulse 2.2s ease-in-out infinite;
+} */
 .roadmap-step[data-status="planned"]:hover .roadmap-card {
   box-shadow: 0 24px 44px rgba(74,111,214,.14), 0 4px 14px rgba(74,111,214,.10);
   border-color: rgba(74,111,214,.3);
@@ -3349,7 +3358,7 @@ svg.flow-connectors {
   text-transform: uppercase;
   padding: .28rem .65rem;
   border-radius: 100px;
-  margin-bottom: .85rem;
+  margin-bottom: 1.8rem;
   opacity: 0;
   transform: translateY(4px);
   transition: opacity .5s ease .15s, transform .5s ease .15s;
@@ -3387,7 +3396,10 @@ svg.flow-connectors {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  position: absolute;
+  top:0;
+  right:0;
   opacity: 0;
   transform: scale(.4) rotate(-12deg);
   transition: opacity .5s cubic-bezier(.34,1.56,.64,1) .25s,
